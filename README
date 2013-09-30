@@ -1,0 +1,19 @@
+The provided Makefile:
+  1) builds a kernel
+	2) copies it into bootcd/boot/kernel/kernel
+	3) creates an ISO CD image with the bootcd/ contents
+
+To boot the system in QEMU, run:
+	qemu-system-x86_64 -curses -cdrom $USER.iso -hda $USER.img -gdb tcp::NNNN
+
+	Explanation of parameters:
+	-curses         use a text console (omit this to use default SDL/VNC console)
+	-cdrom x.iso    connect a CD-ROM and insert CD with x.iso disk
+	-hda x.img      connect a hard drive with x.img disk
+	-gdb tcp::NNNN  listen for "remote" debugging connections on port NNNN
+
+When using the -curses mode, switch to the qemu> console with ESC-2.
+
+To connect a remote debugger to the running qemu VM:
+	gdb ./kernel
+	target remote localhost:1234
