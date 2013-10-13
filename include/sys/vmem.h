@@ -45,10 +45,10 @@ uint64_t get_pg_tbl1(uint64_t index);
 uint64_t get_pg_tbl2(uint64_t index);
 uint64_t get_pg_tbl3(uint64_t index);
 
-uint64_t set_pg_dir(uint64_t index, uint64_t value);
-uint64_t set_pg_tbl1(uint64_t index, uint64_t value);
-uint64_t set_pg_tbl2(uint64_t index, uint64_t value);
-uint64_t set_pg_tbl3(uint64_t indx, uint64_t value);
+void set_pg_dir(struct pg_dir **p_dir, uint64_t index, uint64_t value);
+void set_pg_tbl1(struct pg_tbl1 **pg_tbl, uint64_t index, uint64_t value);
+void set_pg_tbl2(struct pg_tbl2 **pg_tbl, uint64_t index, uint64_t value);
+void set_pg_tbl3(struct pg_tbl3 **pg_tbl, uint64_t indx, uint64_t value);
 
 
 #endif
