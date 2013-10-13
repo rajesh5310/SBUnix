@@ -14,41 +14,35 @@ void set_mem_bit(int position);
 int get_mem_bit(int position);
 
 
-struct pg_dir
+typedef struct page_dir
 {
     uint64_t pg_dir_ptr[512];
-} *pg_dir;
+}  page_dir;
 
-struct pg_tbl1
+typedef struct
 {
     uint64_t pg_tbl1_ptr[512];
-};
+} pg_tbl1;
 
-struct pg_tbl2
+typedef struct
 {
     uint64_t pg_tbl2_ptr[512];
-};
+} pg_tbl2;
 
-struct pg_tbl3
+typedef struct
 {
     uint64_t pg_tbl3_ptr[512];
-};
-
-struct pg_tbl1 *pg_tbl1_1;
-struct pg_tbl2 *pg_tbl2_1_5;
-struct pg_tbl3 *pg_tbl3_1_5_10;
-
-
+} pg_tbl3;
 
 uint64_t get_pg_dir(uint64_t index);
 uint64_t get_pg_tbl1(uint64_t index);
 uint64_t get_pg_tbl2(uint64_t index);
 uint64_t get_pg_tbl3(uint64_t index);
 
-void set_pg_dir(struct pg_dir **p_dir, uint64_t index, uint64_t value);
-void set_pg_tbl1(struct pg_tbl1 **pg_tbl, uint64_t index, uint64_t value);
-void set_pg_tbl2(struct pg_tbl2 **pg_tbl, uint64_t index, uint64_t value);
-void set_pg_tbl3(struct pg_tbl3 **pg_tbl, uint64_t indx, uint64_t value);
+void set_pg_dir(page_dir **p_dir, uint64_t index, uint64_t value);
+void set_pg_tbl1(pg_tbl1 **pg_tbl, uint64_t index, uint64_t value);
+void set_pg_tbl2(pg_tbl2 **pg_tbl, uint64_t index, uint64_t value);
+void set_pg_tbl3(pg_tbl3 **pg_tbl, uint64_t indx, uint64_t value);
 
 
 #endif

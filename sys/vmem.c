@@ -3,8 +3,11 @@
 #include<defs.h>
 void setup_page_tables();
 char phy_mem_map[NUMBER_OF_PAGES/8]; //1 bit for each 8 bits ; 1 character takes 8 bits and can hence store 8 pages.
+uint64_t * placement_addr;
+uint64_t kmalloc(uint64_t sz, uint64_t placemenet_addr, int align);
 void init_phy_mem(uint32_t* modulep, void* physbase, void* physfree)
 {
+    placement_addr = physfree;
 
     uint64_t total_phy_mem = 0, avail_phy_mem = 0, length=0;
     uint64_t i = 0;
@@ -29,7 +32,7 @@ void init_phy_mem(uint32_t* modulep, void* physbase, void* physfree)
 
    memset(phy_mem_map, 0x00, sizeof(phy_mem_map)); //Set All bits Available
 
-   // SET BITS UNAVAILABLE FOR the pages corresponding from physbase to physfree
+   // SET BITS UNAVAILABLE FOR the pages corresponding from physbaffffffff80205018se to physfree
   for (i = (uint64_t) physbase / PAGE_SIZE; i < ((uint64_t)physfree /PAGE_SIZE)+ 100; i++)
       set_mem_bit(i);
 
@@ -45,24 +48,38 @@ void init_phy_mem(uint32_t* modulep, void* physbase, void* physfree)
 }
 void setup_page_tables()
 {
+    uint64_t address = (uint64_t)placement_addr;
+    print("<-----------ADDR---------------> %x", address);
+    page_dir *pg_dir = (page_dir *)kmalloc(sizeof(page_dir), address, 1);
+    print("\nAddress : %x", &pg_dir);
+    address += 4098;
+    pg_tbl1 *pg_tbl1_1 = (pg_tbl1 *)kmalloc(sizeof(pg_tbl1), address, 1);
+    print("\nAddress : %x", &pg_tbl1_1);
+    address += 4098;
+    pg_tbl2 *pg_tbl2_1_5 = (pg_tbl2 *)kmalloc(sizeof(pg_tbl2), address, 1);
+    print("\nAddress : %x", &pg_tbl2_1_5);
+    address += 4098;
+    pg_tbl3 *pg_tbl3_1_5_10 = (pg_tbl3 *)kmalloc(sizeof(pg_tbl3), address, 1);
+    print("\nAddress : %x", &pg_tbl3_1_5_10);
+    address += 4098;
+
     set_pg_dir(&pg_dir, 0, (uint64_t)&pg_tbl1_1);
     set_pg_tbl1(&pg_tbl1_1, 5, (uint64_t)&pg_tbl2_1_5);
     set_pg_tbl2(&pg_tbl2_1_5, 10, (uint64_t)&pg_tbl3_1_5_10);
     set_pg_tbl3(&pg_tbl3_1_5_10, 15, (uint64_t)0x200000);
 }
 
-void set_pg_dir(struct pg_dir **p_dir, uint64_t index, uint64_t value)
+void set_pg_dir(page_dir **p_dir, uint64_t index, uint64_t value)
 {
     uint64_t flags = 0x001;
     uint64_t address = value;
     address = address << 12;
     address = address | flags;
-
     ((*p_dir)->pg_dir_ptr)[index] = address;
     print("\n%x", address);
 }
 
-void set_pg_tbl1(struct pg_tbl1 **pg_tbl, uint64_t index, uint64_t value)
+void set_pg_tbl1(pg_tbl1 **pg_tbl, uint64_t index, uint64_t value)
 {
     uint64_t flags = 0x001;
     uint64_t address = value;
@@ -73,7 +90,7 @@ void set_pg_tbl1(struct pg_tbl1 **pg_tbl, uint64_t index, uint64_t value)
     print("\n%x", address);
 }
 
-void set_pg_tbl2(struct pg_tbl2 **pg_tbl, uint64_t index, uint64_t value)
+void set_pg_tbl2(pg_tbl2 **pg_tbl, uint64_t index, uint64_t value)
 {
     uint64_t flags = 0x001;
     uint64_t address = value;
@@ -84,7 +101,7 @@ void set_pg_tbl2(struct pg_tbl2 **pg_tbl, uint64_t index, uint64_t value)
     print("\n%x", address);
 }
 
-void set_pg_tbl3(struct pg_tbl3 **pg_tbl, uint64_t index, uint64_t value)
+void set_pg_tbl3(pg_tbl3 **pg_tbl, uint64_t index, uint64_t value)
 {
     uint64_t flags = 0x001;
     uint64_t address = value;
@@ -92,13 +109,38 @@ void set_pg_tbl3(struct pg_tbl3 **pg_tbl, uint64_t index, uint64_t value)
     address = address | flags;
 
     ((*pg_tbl)->pg_tbl3_ptr)[index] = address;
-    print("\n%x", address);
+
+    /*if((address)%PAGE_SIZE_HEX != 0)
+    {
+        print("Memory address not page aligned!");
+        return;
+    }*/
+    uint64_t page_number = (value)/PAGE_SIZE_HEX + 1;
+    set_mem_bit(page_number);
+
+    print("\nAddress : %x", address);
+}
+
+uint64_t kmalloc(uint64_t sz, uint64_t placement_address, int align)
+{
+  /*if (align == 1 && (placement_address & (uint64_t)0xFFFFF000)) // If the address is not already page-aligned
+  {
+    // Align it.
+    placement_address &= 0xFFFFF000;
+    placement_address += 0x1000;
+  }*/
+  uint64_t address = placement_address;
+  print("\nsize : %d", sz);
+  print("\nplacement address : %x", placement_address);
+  //*placement_address += sz;
+  return address;
 }
 
 int get_phy_page()
 {
 return 0;
 }
+
 
 void set_mem_bit(int position)
 {
