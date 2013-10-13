@@ -1,1 +1,0 @@
-gcc -c -O1 -Wall -Werror -nostdinc -Iinclude -msoft-float -mno-sse -mno-red-zone -fno-builtin -fPIC -mtune=amdfam10 -g3 -o obj/sys/idt.o sys/idt.c

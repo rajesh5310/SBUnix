@@ -1,7 +1,7 @@
 The provided Makefile:
   1) builds a kernel
-	2) copies it into bootcd/boot/kernel/kernel
-	3) creates an ISO CD image with the bootcd/ contents
+	2) copies it into rootfs/boot/kernel/kernel
+	3) creates an ISO CD image with the rootfs/ contents
 
 To boot the system in QEMU, run:
 	qemu-system-x86_64 -curses -cdrom $USER.iso -hda $USER.img -gdb tcp::NNNN

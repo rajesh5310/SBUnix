@@ -1,19 +1,10 @@
 #include <defs.h>
 #include <sys/gdt.h>
-#include <sys/idt.h>
 #include <print.h>
-#include <sys/timer.h>
-void start(void* modulep, void* physbase, void* physfree)
+#include <sys/vmem.h>
+void start(uint32_t* modulep, void* physbase, void* physfree)
 {
-    print_line(50, 0, "Welcome to OS");
-
-    print("Character : %c\n", 'a');
-    print("String : %s\n", "Rajesh");
-    print("Integer : %d\n", 506 );
-    print("Hex Code : 0x%x\n",  10324);
-    int var = 10;
-    print("Pointer : %p\n", &var);
-    init_timer();
+    init_phy_mem(modulep, physbase, physfree);
 }
 
 #define INITIAL_STACK_SIZE 4096
@@ -24,23 +15,24 @@ extern char kernmem, physbase;
 void boot(void)
 {
 	// note: function changes rsp, local stack variables can't be practically used
+//	register char *temp1, *temp2;
 	__asm__(
 		"movq %%rsp, %0;"
 		"movq %1, %%rsp;"
 		:"=g"(loader_stack)
 		:"r"(&stack[INITIAL_STACK_SIZE])
 	);
-	clear_screen();
 	reload_gdt();
-    reload_idt();
-    load_irq();
-
-    /*int infinite_loop=1;
-    while(infinite_loop);*/
+	setup_tss();
 	start(
-		(char*)(uint64_t)loader_stack[3] + (uint64_t)&kernmem - (uint64_t)&physbase,
+		(uint32_t*)((char*)(uint64_t)loader_stack[3] + (uint64_t)&kernmem - (uint64_t)&physbase),
 		&physbase,
 		(void*)(uint64_t)loader_stack[4]
 	);
-
-	while(1);}
+	/*for(
+		temp1 = "!!!!! start() returned !!!!!", temp2 = (char*)0xb8000;
+		*temp1;
+		temp1 += 1, temp2 += 2
+	) *temp2 = *temp1;*/
+	while(1);
+}

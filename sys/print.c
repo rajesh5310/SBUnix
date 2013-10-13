@@ -72,7 +72,7 @@ int print(char *message, ...)
 {
     char* message_local;
     char* temp_str;
-    int temp_int;
+    uint64_t temp_int;
     char temp_char;
     va_list vl;
     void *temp_m;
@@ -120,7 +120,7 @@ int print(char *message, ...)
                 break;
             case 'x':
                 temp_str = NULL;
-                temp_int = va_arg(vl, int);
+                temp_int = va_arg(vl, uint64_t);
                 convert_to_string(temp_int, temp_str, 16);
                 while(*temp_str) {
                     putchar(&temp_str, &video_memory);
