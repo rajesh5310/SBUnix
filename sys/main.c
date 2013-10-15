@@ -4,7 +4,10 @@
 #include <sys/vmem.h>
 void start(uint32_t* modulep, void* physbase, void* physfree)
 {
-    init_phy_mem(modulep, physbase, physfree);
+    print("\n Physbase %x", physbase);
+    print("\n Physfree %x", physfree);
+    char *physfree_c = (char *)physfree;
+    init_phy_mem(modulep, physbase, physfree_c);
 }
 
 #define INITIAL_STACK_SIZE 4096
