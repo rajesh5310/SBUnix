@@ -1,6 +1,7 @@
 #include<sys/vmem.h>
 #include<print.h>
 #include<defs.h>
+//FFFFFFFF80000000
 void setup_page_tables(char* physfree);
 char phy_mem_map[NUMBER_OF_PAGES/8]; //1 bit for each 8 bits ; 1 character takes 8 bits and can hence store 8 pages.24b000_____
 uint64_t kmalloc(uint64_t sz, char *physfree, int align);
@@ -44,32 +45,68 @@ void setup_page_tables(char* physfree)
 {
 
     page_dir *pg_dir = (page_dir *)kmalloc(sizeof(page_dir), physfree, 1);
-    print("\nAddress : %x", pg_dir);
+//    print("\nAddress : %x", pg_dir);
 
     pg_tbl1 *pg_tbl1_i = (pg_tbl1 *)kmalloc(sizeof(pg_tbl1), physfree, 1);
-    print("\nAddress : %x", pg_tbl1_i);
+  //  print("\nAddress : %x", pg_tbl1_i);
 
     pg_tbl2 *pg_tbl2_i = (pg_tbl2 *)kmalloc(sizeof(pg_tbl2), physfree, 1);
-    print("\nAddress : %x", pg_tbl2_i);
+   // print("\nAddress : %x", pg_tbl2_i);
 
     pg_tbl3 *pg_tbl3_i = (pg_tbl3 *)kmalloc(sizeof(pg_tbl3), physfree, 1);
-    print("\nAddress : %x", pg_tbl3_i);
+    //print("\nAddress : %x", pg_tbl3_i);
 
     set_pg_dir(pg_dir, 511, (uint64_t)pg_tbl1_i);
     set_pg_tbl1(pg_tbl1_i, 510, (uint64_t)pg_tbl2_i);
     set_pg_tbl2(pg_tbl2_i, 1, (uint64_t)pg_tbl3_i);
 
+   /* pg_tbl1 *pg_tbl1_p = (pg_tbl1 *)kmalloc(sizeof(pg_tbl1), physfree, 1);
+    print("\nAddress : %x", pg_tbl1_p);
+*/
+    /*pg_tbl2 *pg_tbl2_p = (pg_tbl2 *)kmalloc(sizeof(pg_tbl2), physfree, 1);
+    print("\nAddress : %x", pg_tbl2_p);
+*/
+    pg_tbl3 *pg_tbl3_p = (pg_tbl3 *)kmalloc(sizeof(pg_tbl3), physfree, 1);
+    //print("\nAddress : %x", pg_tbl3_p);
+
+    //set_pg_dir(pg_dir, 511, (uint64_t)pg_tbl1_p);
+    //set_pg_tbl1(pg_tbl1_i, 508, (uint64_t)pg_tbl2_p);
+    set_pg_tbl2(pg_tbl2_i, 0, (uint64_t)pg_tbl3_p);
+
+    /*pg_tbl1_p->pg_tbl1_ptr[0] = 0;
+    pg_tbl2_p->pg_tbl2_ptr[0] = 0;
+    pg_tbl3_p->pg_tbl3_ptr[0] = 0;*/
     uint64_t physbase_t = 0x200000;
     uint64_t physfree_t = 0x20b000;
+
+
+
+        //i++;
+        //print(" v  %d", i);
+
+    physbase_t = 0x200000;
+    physfree_t = 0x20b000;
     int i =0;
+    //print("\n");
     for (; physbase_t <= physfree_t; physbase_t += 0x1000)
     {
         set_pg_tbl3(pg_tbl3_i, i, physbase_t);
         i++;
+        print("  %d", i);
+    }
+
+    physbase_t = 0xB8000;
+    physfree_t = 0xBa000;
+    i=184;
+   for (; physbase_t <= physfree_t; physbase_t += 0x1000)
+    {
+
+        set_pg_tbl3(pg_tbl3_p, i, physbase_t);
+        i++;
     }
     //set_pg_tbl3(&pg_tbl3_i, 0, (uint64_t)0x200000);
 
-    switch_page_directory(pg_dir);
+   switch_page_directory(pg_dir);
 }
 
 void switch_page_directory(page_dir *dir)
@@ -77,7 +114,8 @@ void switch_page_directory(page_dir *dir)
     //print("\n%x", &dir->pg_dir_ptr[0]);
     load_cr3(dir );
 
-
+    change_video_pointer();
+    print("Printing after remapping video memory");
 //   current_directory = dir;
  /*   print("\n%x", &dir);
     print("\n%x", &dir->pg_dir_ptr);

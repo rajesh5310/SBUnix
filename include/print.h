@@ -11,4 +11,5 @@ int print(char *message, ...);
 void print_backspace();
 void update_cursor(int row, int col);
 void update_cursor_current_loc();
+void change_video_pointer();
 #endif

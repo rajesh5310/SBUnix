@@ -7,7 +7,8 @@
 #include "ports.h"
 #define WHITE_TXT 0x0f // white on black text
 #define COLOR 0x09
-#define VIDEO_MEM 0xb8000
+#define VIDEO_MEM 0xFFFFFFFF800B8000
+//#define VIDEO_MEM 0xB8000
 
 
 #define va_start(v,l) __builtin_va_start(v,l)
@@ -24,7 +25,7 @@ void put_line_feed(volatile char ** vidmen);
 volatile char *vid_memory = (char *) 0xb8000;
 int print_line(int x, int y, char *message, ...);
 int putchar_color(char** ch, int colour,  volatile char** video_memory);
-
+//uint64_t VIDEO_MEM = 0xB8000;
 volatile char * video_memory =  (volatile char *) (VIDEO_MEM + 160);
 
 /*
@@ -38,6 +39,11 @@ void put_line_feed(volatile char ** vidmen)
     *vidmen = *vidmen + offset;
 }
 
+void change_video_pointer()
+{
+    clear_screen();
+    video_memory =  (volatile char *)(0xFFFFFFFF800B8000 + 160);
+}
 /*
 * Moves video memory pointer to point (x,y)
 */
