@@ -11,8 +11,8 @@ void			handle_keyboard_irq();
 
 void 			kbc_initialise();
 size_t			kbc_bytes_in_buffer();
-sint32_t		kbc_readchar();
-sint32_t		kbc_read(void* dst, size_t size);
+uint32_t		kbc_readchar();
+uint32_t		kbc_read(void* dst, size_t size);
 
 /*Scan codes*/
 enum kbsc {
