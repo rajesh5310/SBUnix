@@ -22,20 +22,20 @@ int putchar(char** ch, volatile char** video_memory);
 char * convert_to_string(unsigned int value, char * str, int base );
 void move_cursor(int x, int y, volatile char ** vidmem );
 void put_line_feed(volatile char ** vidmen);
-volatile char *vid_memory = (char *) 0xb8000;
+volatile char *vid_memory = (char *) VIDEO_MEM;
 int print_line(int x, int y, char *message, ...);
 int putchar_color(char** ch, int colour,  volatile char** video_memory);
 //uint64_t VIDEO_MEM = 0xB8000;
 volatile char * video_memory =  (volatile char *) (VIDEO_MEM + 160);
-
+void itoa(int i, char b[]);
 /*
 * Handles new line (\n)
 */
 void put_line_feed(volatile char ** vidmen)
 {
-    int curr_loc = (unsigned long int)*vidmen;
-    int start_loc = (unsigned long int)0xB8000;
-    int offset = 160 - (curr_loc - start_loc)%160;
+    uint64_t curr_loc = (unsigned long int)*vidmen;
+    uint64_t start_loc = (unsigned long int)VIDEO_MEM;
+    uint64_t offset = 160 - (curr_loc - start_loc)%160;
     *vidmen = *vidmen + offset;
 }
 
@@ -118,6 +118,7 @@ int print(char *message, ...)
                 temp_str = NULL;
                 temp_int = va_arg(vl, int);
                 convert_to_string(temp_int, temp_str, 10);
+                //itoa(temp_int, temp_str);
                 while(*temp_str) {
                     putchar(&temp_str, &video_memory);
                     temp_str++;
@@ -158,7 +159,24 @@ int print(char *message, ...)
     update_cursor_current_loc();
     return 0;
 }
-
+void itoa(int i, char b[]){
+    char const digit[] = "0123456789";
+    char* p = b;
+    if(i<0){
+        *p++ = '-';
+        i = -1;
+    }
+    int shifter = i;
+    do{
+        ++p;
+        shifter = shifter/10;
+    }while(shifter);
+    *p = '\0';
+    do{
+        *--p = digit[i%10];
+        i = i/10;
+    }while(i);
+}
 /*
 * Prints the content on secified location i.e. (x,y)
 */
@@ -167,7 +185,7 @@ int print_line(int x, int y, char *message, ...)
     volatile  char *video_mem;
     char* message_local;
     char* temp_str;
-    video_mem = (char *)(0xB8000);
+    video_mem = (char *)(0xFFFFFFFF800B8000);
     int temp_int;
     char temp_char;
     va_list vl;
@@ -256,8 +274,8 @@ int print_line(int x, int y, char *message, ...)
 */
 void print_backspace()
 {
-    int curr_loc = (unsigned long int)video_memory;
-    int start_loc = (unsigned long int)0xB8000;
+	uint64_t curr_loc = (unsigned long int)video_memory;
+    uint64_t start_loc = (unsigned long int)VIDEO_MEM;
     if ((curr_loc - start_loc) > 160)
     {
         video_memory -= 2;
@@ -286,8 +304,8 @@ void update_cursor(int row, int col)
 */
 void update_cursor_current_loc()
 {
-    int curr_loc = (unsigned long int)video_memory;
-    int start_loc = (unsigned long int)0xB8000;
+	uint64_t curr_loc = (unsigned long int)video_memory;
+    uint64_t start_loc = (unsigned long int)VIDEO_MEM;
 
     unsigned short position= (curr_loc - start_loc)/2;
     outb(0x3D4, 0x0F);
@@ -325,40 +343,120 @@ int putchar(char** ch, volatile char** video_memory)
 */
 char * convert_to_string(unsigned int value, char * str, int base )
 {
-    char * rc;
-    char * ptr;
-    char * low;
+	//int length=0,start, end;
+	int j, length = 0;
+	//char c;
+	char temp[30];
     // Check for supported base.
     if ( base < 2 || base > 36 )
     {
         *str = '\0';
         return str;
     }
-    rc = ptr = str;
+
     // Set '-' for negative decimals.
     if ( value < 0 && base == 10 )
     {
-        *ptr++ = '-';
+        *str++ = '-';
     }
     // Remember where the numbers start.
-    low = ptr;
+    //low = str;
     // The actual conversion.
     do
     {
         // Modulo is negative for negative value. This trick makes abs() unnecessary.
-        *ptr++ = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz"[35 + value % base];
+        temp[length++] = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz"[35 + value % base];
         value /= base;
     } while ( value );
     // Terminating the string.
-    *ptr-- = '\0';
-    // Invert the numbers.
-    while ( low < ptr )
+    temp[length] = '\0';
+    for(j= length-1; j >=0 ; j--)
     {
-        char tmp = *low;
-        *low++ = *ptr;
-        *ptr-- = tmp;
+    	*str++ = temp[j];
     }
-    return rc;
+    *str = '\0';
+    /*str--;
+    while(*str != '\0')
+    {
+    	str--;
+    	length++;
+    }
+
+    end= length - 1;
+    start = 0;
+
+    while( start < end )
+    {
+		c = str[start];
+		str[start] = str[end];
+		str[end] = c;
+
+		++start;
+		--end;
+    }
+
+    while(*str != '\0')
+    {
+    	str--;
+    }
+*/
+    //return str;
+
+    // Invert the numbers.
+    /*while ( low < ptr )
+    {
+        char tmp = *str;
+        *str++ = *ptr;
+        *ptr-- = tmp;
+    }*/
+    return str;
 }
+
+
+/*
+* Converts number of any base to string
+*/
+/*char * convert_to_string(unsigned int value, char * str, int base )
+{
+    //char * rc;
+    //char * ptr;
+    //char * low;
+    // Check for supported base.
+	char ptr[20];
+	//char low[20];
+	int ptr_c = 0, low_c = 0;
+    if ( base < 2 || base > 36 )
+    {
+        *str = '\0';
+        return str;
+    }
+    //rc = ptr = str;
+    // Set '-' for negative decimals.
+
+    if ( value < 0 && base == 10 )
+    {
+        ptr[ptr_c++] = '-';
+    }
+    // The actual conversion.
+    do
+    {
+        // Modulo is negative for negative value. This trick makes abs() unnecessary.
+        ptr[ptr_c++] = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz"[35 + value % base];
+        value /= base;
+    } while ( value );
+    // Terminating the string.
+    ptr[ptr_c] = '\0';
+    // Invert the numbers.
+    ptr_c--;
+	while ( low_c < ptr_c )
+	{
+		char tmp = ptr[low_c];
+		ptr[low_c++] = ptr[ptr_c];
+		ptr[ptr_c--] = tmp;
+	}
+
+    str = ptr;
+    return ptr;
+}*/
 
 

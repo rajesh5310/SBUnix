@@ -71,10 +71,11 @@ void mm_init(uint32_t* modulep, void* physbase, void* physfree)
     print("\nAvailable Physical Pages [%d]\n", npages);
 
     pml4e = boot_alloc(PGSIZE);
-
+    print("\n pml4e %x", pml4e);
     memset(pml4e, 0, PGSIZE);
     boot_pml4e = pml4e;
     boot_cr3 = PADDR(pml4e);
+    print("\n pml4e %x", boot_cr3);
 
 /*
     //moves page_directory (which is a pointer) into the cr3 register.
@@ -158,7 +159,7 @@ void mm_init(uint32_t* modulep, void* physbase, void* physfree)
     // Your code goes here:
 
     boot_map_segment( pml4e,KERNBASE+(uintptr_t)physbase, (uintptr_t)physfree-(uintptr_t)physbase, (uintptr_t)physbase,PTE_W|PTE_P);
-    boot_map_segment( pml4e,KERNBASE+(uintptr_t)0xb8000, 4096, (uintptr_t)0xb8000,PTE_W|PTE_P);
+    boot_map_segment( pml4e,KERNBASE+(uintptr_t)0xb8000, 4096*4, (uintptr_t)0xb8000,PTE_W|PTE_P);
 
    // check_boot_pml4e(boot_pml4e);
 
@@ -178,7 +179,7 @@ void mm_init(uint32_t* modulep, void* physbase, void* physfree)
 */
 
 //    check_page_free_list(0)
-    change_video_pointer();
+    //change_video_pointer();
     print("hello");
 
 }
@@ -213,7 +214,7 @@ boot_alloc(uint64_t n)
     // to a multiple of PGSIZE.
     //
     // LAB 2: Your code here.
-
+      //print("\n next free %x", nextfree);
       if (!nextfree) {
            nextfree = ROUNDUP((char *) end, PGSIZE);
            result=nextfree;
@@ -235,6 +236,9 @@ boot_alloc(uint64_t n)
                 PADDR(nextfree);
                }
         }
+      uint64_t nextfree_t = (uint64_t) result;
+      if(nextfree_t%4096 != 0)
+       print("\n next free %x mod 4kb %x", nextfree_t, nextfree_t%4096);
     return result;
 
 }

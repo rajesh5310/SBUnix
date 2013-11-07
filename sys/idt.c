@@ -55,6 +55,7 @@ static void init_idt()
 
     idt_set_gate(0,8, 0, 0x0e, 0, ((uint64_t)&isr0));
     _x86_64_asm_igdt(&idt_ptr);
+
 };
 
 static void idt_set_gate(int num,uint16_t selector, unsigned ist, unsigned type, unsigned dpl, uint64_t offset)

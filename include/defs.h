@@ -65,7 +65,7 @@ typedef int32_t off_t;
 #define ROUNDDOWN(a, n)						\
 ({								\
 	uint64_t __a = (uint64_t) (a);				\
-	(typeof(a)) (__a - __a % (n));				\
+	(typeof(a)) (__a  - __a % (n));				\
 })
 // Round up to the nearest multiple of n
 #define ROUNDUP(a, n)						\
