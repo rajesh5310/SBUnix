@@ -161,6 +161,9 @@ void mm_init(uint32_t* modulep, void* physbase, void* physfree)
     boot_map_segment( pml4e,KERNBASE+(uintptr_t)physbase, (uintptr_t)physfree-(uintptr_t)physbase, (uintptr_t)physbase,PTE_W|PTE_P);
     boot_map_segment( pml4e,KERNBASE+(uintptr_t)0xb8000, 4096*4, (uintptr_t)0xb8000,PTE_W|PTE_P);
 
+    print("\nboot cr3  %x", boot_cr3);
+    print("\npmle4  %x", pml4e);
+    *(pml4e+510)  = (uint64_t)boot_cr3 ;
    // check_boot_pml4e(boot_pml4e);
 
     //pdpe_t *pdpe = KADDR(PTE_ADDR(pml4e[0]));
@@ -179,8 +182,8 @@ void mm_init(uint32_t* modulep, void* physbase, void* physfree)
 */
 
 //    check_page_free_list(0)
-    //change_video_pointer();
-    print("hello");
+    change_video_pointer();
+    //print("hello");
 
 }
 

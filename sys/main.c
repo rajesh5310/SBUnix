@@ -4,14 +4,17 @@
 #include <sys/vmem.h>
 #include <sys/idt.h>
 #include <sys/timer.h>
+#include <sys/tarfs.h>
+
+
 void start(uint32_t* modulep, void* physbase, void* physfree)
 {
-	print("Integer : %d\n", 506 );
+	//print("Integer : %d\n", 506 );
     /*print("\n Physbase %x", physbase);
     print("\n Physfree %x", physfree);
     char *physfree_c = (char *)physfree;
     init_phy_mem(modulep, physbase, physfree_c);*/
-    //mm_init(modulep,physbase,physfree);
+    mm_init(modulep,physbase,physfree);
 
     /*To load GDT*/
 	reload_gdt();
@@ -21,17 +24,19 @@ void start(uint32_t* modulep, void* physbase, void* physfree)
 	print("%d", 1/i);*/
 	/*To load PIC interrupts*/
 	load_irq();
-   print_line(50, 0, "Welcome to SBUnix");
+	//print("\nInteger : %d\n", 506 );
+	print_line(50, 0, "Welcome to SBUnix");
 
-   print("Character : %c\n", 'a');
+   /*print("Character : %c\n", 'a');
    print("String : %s\n", "Rajesh");
    print("Integer : %d\n", 506 );
    print("Hex Code : 0x%x\n",  10324);
    int var = 10;
-   print("Pointer : 0x%p\n", &var);
-
+   print("Pointer : 0x%p\n", &var);*/
    //To intialize timer
    init_timer();
+
+   get_file_sections("bin/hello");
 }
 
 #define INITIAL_STACK_SIZE 4096

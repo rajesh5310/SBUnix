@@ -19,6 +19,7 @@ typedef __builtin_va_list va_list;
 
 void clear_screen();
 int putchar(char** ch, volatile char** video_memory);
+int putchar_new(char ch, volatile char** video_memory);
 char * convert_to_string(unsigned int value, char * str, int base );
 void move_cursor(int x, int y, volatile char ** vidmem );
 void put_line_feed(volatile char ** vidmen);
@@ -31,6 +32,11 @@ void itoa(int i, char b[]);
 /*
 * Handles new line (\n)
 */
+void puts(char *str)
+{
+	while(*str != '\0')
+		   	 print("%c", *str++);
+}
 void put_line_feed(volatile char ** vidmen)
 {
     uint64_t curr_loc = (unsigned long int)*vidmen;
@@ -77,12 +83,13 @@ void clear_screen()
 int print(char *message, ...)
 {
     char* message_local;
-    char* temp_str;
+
     uint64_t temp_int;
     char temp_char;
     va_list vl;
     void *temp_m;
     int p_add;
+    int count;
 
     va_start(vl, message);
     message_local = message;
@@ -105,8 +112,9 @@ int print(char *message, ...)
 
         switch(*++message_local)
         {
+        	char temp_str_i[1024], *temp_str;
             case 's':
-                temp_str = NULL;
+                //temp_str = NULL;
                 temp_str = va_arg(vl, char *);
                 while(*temp_str) {
                     putchar(&temp_str, &video_memory);
@@ -115,35 +123,35 @@ int print(char *message, ...)
                 message_local = message_local + 1;
                 break;
             case 'd':
-                temp_str = NULL;
                 temp_int = va_arg(vl, int);
-                convert_to_string(temp_int, temp_str, 10);
-                //itoa(temp_int, temp_str);
-                while(*temp_str) {
-                    putchar(&temp_str, &video_memory);
-                    temp_str++;
+                convert_to_string(temp_int, temp_str_i, 10);
+                count = 0;
+                while(temp_str_i[count]!='\0') {
+                    putchar_new(temp_str_i[count], &video_memory);
+                    count++;
                 }
                 message_local = message_local + 1;
                 break;
             case 'x':
-                temp_str = NULL;
-                temp_int = va_arg(vl, uint64_t);
-                convert_to_string(temp_int, temp_str, 16);
-                while(*temp_str) {
-                    putchar(&temp_str, &video_memory);
-                    temp_str++;
-                }
-                message_local = message_local + 1;
-                break;
+                //temp_str = NULL;
+            	temp_int = va_arg(vl, int);
+				convert_to_string(temp_int, temp_str_i, 16);
+				count = 0;
+				while(temp_str_i[count]!='\0') {
+					putchar_new(temp_str_i[count], &video_memory);
+					count++;
+				}
+				message_local = message_local + 1;
+				break;
             case 'c':
-                temp_str = NULL;
+                //temp_str = NULL;
                 temp_char = va_arg(vl, int);
                 temp_str = &temp_char;
                 putchar(&temp_str, &video_memory);
                 message_local = message_local + 1;
                 break;
             case 'p':
-                temp_str = NULL;
+                //temp_str = NULL;
                 temp_m =  va_arg(vl,  void *);
                 p_add = (long unsigned int) temp_m;
                 convert_to_string(p_add, temp_str, 16);
@@ -159,24 +167,7 @@ int print(char *message, ...)
     update_cursor_current_loc();
     return 0;
 }
-void itoa(int i, char b[]){
-    char const digit[] = "0123456789";
-    char* p = b;
-    if(i<0){
-        *p++ = '-';
-        i = -1;
-    }
-    int shifter = i;
-    do{
-        ++p;
-        shifter = shifter/10;
-    }while(shifter);
-    *p = '\0';
-    do{
-        *--p = digit[i%10];
-        i = i/10;
-    }while(i);
-}
+
 /*
 * Prints the content on secified location i.e. (x,y)
 */
@@ -184,9 +175,9 @@ int print_line(int x, int y, char *message, ...)
 {
     volatile  char *video_mem;
     char* message_local;
-    char* temp_str;
+
     video_mem = (char *)(0xFFFFFFFF800B8000);
-    int temp_int;
+    int temp_int, count;
     char temp_char;
     va_list vl;
     void *temp_m;
@@ -215,8 +206,9 @@ int print_line(int x, int y, char *message, ...)
 
         switch(*++message_local)
         {
+        	char temp_str_i[1024],  *temp_str;
             case 's':
-                temp_str = NULL;
+                //temp_str = NULL;
                 temp_str = va_arg(vl, char *);
                 while(*temp_str) {
                     putchar(&temp_str, &video_mem);
@@ -225,17 +217,17 @@ int print_line(int x, int y, char *message, ...)
                 message_local = message_local + 1;
                 break;
             case 'd':
-                temp_str = NULL;
-                temp_int = va_arg(vl, int);
-                convert_to_string(temp_int, temp_str, 10);
-                while(*temp_str) {
-                    putchar_color(&temp_str, 0x06,&video_mem);
-                    temp_str++;
-                }
-                message_local = message_local + 1;
-                break;
+            	temp_int = va_arg(vl, int);
+				convert_to_string(temp_int, temp_str_i, 10);
+				count = 0;
+				while(temp_str_i[count]!='\0') {
+					putchar_new(temp_str_i[count], &video_mem);
+					count++;
+				}
+				message_local = message_local + 1;
+				break;
             case 'x':
-                temp_str = NULL;
+                //temp_str = NULL;
                 temp_int = va_arg(vl, int);
                 convert_to_string(temp_int, temp_str, 16);
                 while(*temp_str) {
@@ -245,14 +237,14 @@ int print_line(int x, int y, char *message, ...)
                 message_local = message_local + 1;
                 break;
             case 'c':
-                temp_str = NULL;
+                //temp_str = NULL;
                 temp_char = va_arg(vl, int);
                 temp_str = &temp_char;
                 putchar(&temp_str, &video_mem);
                 message_local = message_local + 1;
                 break;
             case 'p':
-                temp_str = NULL;
+                //temp_str = NULL;
                 temp_m =  va_arg(vl,  void *);
                 p_add = (long unsigned int) temp_m;
                 convert_to_string(p_add, temp_str, 16);
@@ -332,6 +324,17 @@ int putchar_color(char** ch, int colour, volatile char** video_memory)
 int putchar(char** ch, volatile char** video_memory)
 {
     **video_memory = **ch;
+    *video_memory += 1;
+    **video_memory = WHITE_TXT;
+    *video_memory += 1;
+    return 0;
+}
+/*
+* Function that prints character to screen
+*/
+int putchar_new(char ch, volatile char** video_memory)
+{
+    **video_memory = ch;
     *video_memory += 1;
     **video_memory = WHITE_TXT;
     *video_memory += 1;

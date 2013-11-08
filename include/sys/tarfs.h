@@ -1,8 +1,8 @@
 #ifndef _TARFS_H
 #define _TARFS_H
 
-extern char _begin_tarfs_begin;
-extern char _begin_tarfs_end;
+extern char _binary_tarfs_start;
+extern char _binary_tarfs_end;
 
 struct posix_header_ustar {
 	char name[100];
@@ -23,5 +23,6 @@ struct posix_header_ustar {
 	char prefix[155];
 	char pad[12];
 };
-
+uint64_t is_file_exists(char* filename);
+void get_file_sections(char* filename);
 #endif
