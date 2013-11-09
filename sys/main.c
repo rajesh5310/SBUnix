@@ -5,6 +5,7 @@
 #include <sys/idt.h>
 #include <sys/timer.h>
 #include <sys/tarfs.h>
+#include <env.h>
 
 
 void start(uint32_t* modulep, void* physbase, void* physfree)
@@ -36,7 +37,9 @@ void start(uint32_t* modulep, void* physbase, void* physfree)
    //To intialize timer
    init_timer();
 
-   get_file_sections("bin/hello");
+   env_init();
+
+   //get_file_sections("bin/hello");
 }
 
 #define INITIAL_STACK_SIZE 4096

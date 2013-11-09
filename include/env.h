@@ -7,7 +7,6 @@
 
 extern struct Env *envs;		// All environments
 extern struct Env *curenv;		// Current environment
-extern struct Segdesc gdt[];
 
 void	env_init(void);
 void	env_init_percpu(void);
