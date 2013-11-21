@@ -6,6 +6,7 @@
 #include <sys/isr.h>
 #include <print.h>
 #include <ports.h>
+#include <process.h>
 
 uint32_t tick = 0;
 
@@ -22,7 +23,9 @@ void timer_callback()
         uint64_t minutes = (seconds%(3600))/60;
         uint64_t secs = (seconds%(3600))%60;
         print_line(50, 24, "Time Passed : %d:%d:%d ", hours, minutes, secs);
+        schedule();
   }
+
 }
 
 /*

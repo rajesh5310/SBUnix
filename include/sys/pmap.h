@@ -77,6 +77,7 @@ static inline physaddr_t
 page2pa(struct Page *pp)
 {
 	return page2ppn(pp) << PGSHIFT;
+
 }
 
 static inline struct Page*
@@ -84,6 +85,7 @@ pa2page(physaddr_t pa)
 {
 	if (PPN(pa) >= npages)
 		print("pa2page called with invalid pa");
+    print("\npage 2 pa %x", &pages[PPN(pa)]);
 	return &pages[PPN(pa)];
 }
 

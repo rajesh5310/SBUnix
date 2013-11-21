@@ -13,4 +13,5 @@ void update_cursor(int row, int col);
 void update_cursor_current_loc();
 void change_video_pointer();
 void puts(char *str);
+void panic(char *message);
 #endif

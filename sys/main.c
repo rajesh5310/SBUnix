@@ -5,41 +5,25 @@
 #include <sys/idt.h>
 #include <sys/timer.h>
 #include <sys/tarfs.h>
-#include <env.h>
-
+#include <process.h>
 
 void start(uint32_t* modulep, void* physbase, void* physfree)
 {
-	//print("Integer : %d\n", 506 );
-    /*print("\n Physbase %x", physbase);
-    print("\n Physfree %x", physfree);
-    char *physfree_c = (char *)physfree;
-    init_phy_mem(modulep, physbase, physfree_c);*/
-    mm_init(modulep,physbase,physfree);
+	 	mm_init(modulep,physbase,physfree);
+	    reload_gdt();
+		reload_idt();
+		load_irq();
 
-    /*To load GDT*/
-	reload_gdt();
-	/*To load IDT*/
-	reload_idt();
-	/*int i = 0;
-	print("%d", 1/i);*/
-	/*To load PIC interrupts*/
-	load_irq();
-	//print("\nInteger : %d\n", 506 );
-	print_line(50, 0, "Welcome to SBUnix");
-
-   /*print("Character : %c\n", 'a');
-   print("String : %s\n", "Rajesh");
-   print("Integer : %d\n", 506 );
-   print("Hex Code : 0x%x\n",  10324);
-   int var = 10;
-   print("Pointer : 0x%p\n", &var);*/
-   //To intialize timer
-   init_timer();
-
-   env_init();
-
-   //get_file_sections("bin/hello");
+		init_timer();
+		setup_tss();
+		first_cs();
+	    print("testing 123");
+	    print("\n%d", 123);
+	    print("\n%s", "Rajesh");
+	    print("\n%c", 'q');
+	    print("\n0x%x", 12345);
+		// kernel starts here
+		while(1);
 }
 
 #define INITIAL_STACK_SIZE 4096
@@ -62,7 +46,7 @@ void boot(void)
 	clear_screen();
 
 
-		setup_tss();
+	//setup_tss();
 	start(
 		(uint32_t*)((char*)(uint64_t)loader_stack[3] + (uint64_t)&kernmem - (uint64_t)&physbase),
 		&physbase,

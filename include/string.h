@@ -16,6 +16,7 @@ char *  strfind(const char *s, char c);
 void *  memset(void *dst, uint64_t c, size_t len);
 /* no memcpy - use memmove instead */
 void *  memmove(void *dst, const void *src, size_t len);
+void *  memcpy(void *dst, const void *src, size_t n);
 int memcmp(const void *s1, const void *s2, size_t len);
 void *  memfind(const void *s, int c, size_t len);
 

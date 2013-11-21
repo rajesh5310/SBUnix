@@ -83,16 +83,10 @@
 #define IOPHYSMEM	0x09fc00
 #define EXTPHYSMEM	0x100000
 
-// Kernel stack.
-#define KSTACKTOP	KERNBASE
-#define KSTKSIZE	(8*PGSIZE)   		// size of a kernel stack
-#define KSTKGAP		(8*PGSIZE)   		// size of a kernel stack guard
 
-// Memory-mapped IO.
-#define MMIOLIM		(KSTACKTOP - PTSIZE)
-#define MMIOBASE	(MMIOLIM - PTSIZE)
+#define MEMBASE     0xffffffff70000000 // 270532608 Bytes, 258 MB till (KernBase+PhysBase)
 
-#define ULIM		(MMIOBASE)
+#define ULIM		(MEMBASE-PTSIZE)
 
 /*
  * User read-only mappings! Anything below here til UTOP are readonly to user.

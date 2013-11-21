@@ -8,6 +8,7 @@
 #define WHITE_TXT 0x0f // white on black text
 #define COLOR 0x09
 #define VIDEO_MEM 0xFFFFFFFF800B8000
+#define TOTAL_LINE 22
 //#define VIDEO_MEM 0xB8000
 
 
@@ -29,6 +30,45 @@ int putchar_color(char** ch, int colour,  volatile char** video_memory);
 //uint64_t VIDEO_MEM = 0xB8000;
 volatile char * video_memory =  (volatile char *) (VIDEO_MEM + 160);
 void itoa(int i, char b[]);
+void start_scroller(volatile char** video_memory)
+{
+        int i = 0;
+        int j = 0;
+        *video_memory = (volatile char *) (VIDEO_MEM + 160);
+        volatile char *video_memory_1 = (volatile char *) (VIDEO_MEM + 320);
+        //volatile char * video_memory_1 =  (volatile char *) (VIDEO_MEM + 320);
+        char ch;
+        for(i = 1; i < TOTAL_LINE - 1; i++)
+        {
+                for(j = 0; j < 160; j++)
+                {
+                	ch = *video_memory_1;
+                	**video_memory = ch;
+                	*video_memory += 1;
+                	video_memory_1 += 1;
+                }
+
+        }
+        for(i = 0 ; i < 160; i++)
+        {
+        	**video_memory = '\0';
+        	*video_memory += 1;
+        }
+        *video_memory -= 160;
+        update_cursor(9, 1);
+}
+void start_scrolling(volatile char** video_memory)
+{
+	uint64_t diff = (uint64_t)*video_memory - (uint64_t)0xFFFFFFFF800B8000;
+	if(diff == TOTAL_LINE*160)
+		start_scroller(video_memory);
+
+}
+void panic(char *message)
+{
+	print(message);
+	__asm__("hlt");
+}
 /*
 * Handles new line (\n)
 */
@@ -39,6 +79,7 @@ void puts(char *str)
 }
 void put_line_feed(volatile char ** vidmen)
 {
+	start_scrolling(vidmen);
     uint64_t curr_loc = (unsigned long int)*vidmen;
     uint64_t start_loc = (unsigned long int)VIDEO_MEM;
     uint64_t offset = 160 - (curr_loc - start_loc)%160;
@@ -211,7 +252,7 @@ int print_line(int x, int y, char *message, ...)
                 //temp_str = NULL;
                 temp_str = va_arg(vl, char *);
                 while(*temp_str) {
-                    putchar(&temp_str, &video_mem);
+                    putchar_color(&temp_str, 0x0b,  &video_mem);
                     temp_str++;
                 }
                 message_local = message_local + 1;
@@ -231,7 +272,7 @@ int print_line(int x, int y, char *message, ...)
                 temp_int = va_arg(vl, int);
                 convert_to_string(temp_int, temp_str, 16);
                 while(*temp_str) {
-                    putchar(&temp_str, &video_mem);
+                	putchar_color(&temp_str, 0x0b,  &video_mem);
                     temp_str++;
                 }
                 message_local = message_local + 1;
@@ -240,7 +281,7 @@ int print_line(int x, int y, char *message, ...)
                 //temp_str = NULL;
                 temp_char = va_arg(vl, int);
                 temp_str = &temp_char;
-                putchar(&temp_str, &video_mem);
+                putchar_color(&temp_str, 0x0b,  &video_mem);
                 message_local = message_local + 1;
                 break;
             case 'p':
@@ -249,7 +290,7 @@ int print_line(int x, int y, char *message, ...)
                 p_add = (long unsigned int) temp_m;
                 convert_to_string(p_add, temp_str, 16);
                 while(*temp_str) {
-                    putchar(&temp_str, &video_mem);
+                	putchar_color(&temp_str, 0x0b,  &video_mem);
                     temp_str++;
                 }
                 message_local = message_local + 1;
@@ -285,25 +326,25 @@ void print_backspace()
 */
 void update_cursor(int row, int col)
 {
-    unsigned short position=(row*80) + col;
+    /*unsigned short position=(row*80) + col;
     outb(0x3D4, 0x0F);
     outb(0x3D5, (unsigned char)(position&0xFF));
     outb(0x3D4, 0x0E);
-    outb(0x3D5, (unsigned char )((position>>8)&0xFF));
+    outb(0x3D5, (unsigned char )((position>>8)&0xFF));*/
 }
 /*
 * Updates cusor to current location
 */
 void update_cursor_current_loc()
 {
-	uint64_t curr_loc = (unsigned long int)video_memory;
+/*	uint64_t curr_loc = (unsigned long int)video_memory;
     uint64_t start_loc = (unsigned long int)VIDEO_MEM;
 
     unsigned short position= (curr_loc - start_loc)/2;
     outb(0x3D4, 0x0F);
     outb(0x3D5, (unsigned char)(position&0xFF));
     outb(0x3D4, 0x0E);
-    outb(0x3D5, (unsigned char )((position>>8)&0xFF));
+    outb(0x3D5, (unsigned char )((position>>8)&0xFF));*/
 }
 
 /*
@@ -323,6 +364,7 @@ int putchar_color(char** ch, int colour, volatile char** video_memory)
 */
 int putchar(char** ch, volatile char** video_memory)
 {
+	start_scrolling(video_memory);
     **video_memory = **ch;
     *video_memory += 1;
     **video_memory = WHITE_TXT;

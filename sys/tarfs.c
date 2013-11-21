@@ -15,7 +15,7 @@ uint64_t is_file_exists(char* filename)
 	   {
 		   test_tarfs = (struct posix_header_ustar *)(&_binary_tarfs_start + temp);
 		   size = octalToDecimal(stoi(test_tarfs->size));
-		   //print("\n");puts(test_tarfs->name);print("    size %d", size);
+		   print("\n");puts(test_tarfs->name);print("    size %d", size);
 		   if(strlen(test_tarfs->name) == 0)
 			   return 999;
 		   if(strcmp(test_tarfs->name, filename) >= 0)
