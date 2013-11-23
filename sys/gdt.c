@@ -46,13 +46,6 @@ void reload_gdt() {
 
 void setup_tss() {
 
-    __asm__ __volatile__(
-            "movq %%rsp, %0;"
-            :"=m"(tss.rsp0)
-            :
-            :"memory"
-        );
-
 	struct sys_segment_descriptor* sd = (struct sys_segment_descriptor*)&gdt[5]; // 6th&7th entry in GDT
 	sd->sd_lolimit = sizeof(struct tss_t)-1;
 	sd->sd_lobase = ((uint64_t)&tss);
@@ -62,7 +55,5 @@ void setup_tss() {
 	sd->sd_hilimit = 0;
 	sd->sd_gran = 0;
 	sd->sd_hibase = ((uint64_t)&tss) >> 24;
-    asm("mov $0x2b,%ax");
-    asm ("ltr %ax");
 
 }

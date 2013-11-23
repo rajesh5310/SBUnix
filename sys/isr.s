@@ -14,6 +14,7 @@
 isr\index:
             cli
             pushq %rax
+            pushq %rbx
             pushq %rcx
             pushq %rdx
             pushq %rsi
@@ -31,10 +32,21 @@ isr\index:
             popq %rsi
             popq %rdx
             popq %rcx
+            popq %rbx
             popq %rax
             sti
             iretq
 .endm
+
+.global isr128
+isr128:
+          call isr_handler128
+.endm
+
+//.global isr32
+//isr32:
+  //         call isr_handler32
+//.endm
 
 set_interrupt 0
 set_interrupt 1
@@ -70,4 +82,3 @@ set_interrupt 30
 set_interrupt 31
 set_interrupt 32
 set_interrupt 33
-set_interrupt 128

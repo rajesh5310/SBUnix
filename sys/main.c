@@ -15,15 +15,15 @@ void start(uint32_t* modulep, void* physbase, void* physfree)
 		load_irq();
 
 		init_timer();
-		/*setup_tss();
-		first_cs();*/
+		setup_tss();
+		first_cs();
 	    print("testing 123");
 	    print("\n%d", 123);
 	    print("\n%s", "Rajesh");
 	    print("\n%c", 'q');
 	    int i = 0;
 	    print("\n0x%x", &i);
-        probe_port((HBA_MEM *)(KERNBASE+(uintptr_t)0xfebf1000)); 
+        // probe_port((HBA_MEM *)(KERNBASE+(uintptr_t)0xfebf1000)); 
 		// kernel starts here
 		while(1);
 }

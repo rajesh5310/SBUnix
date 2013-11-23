@@ -349,6 +349,7 @@ void update_cursor_current_loc()
 */
 int putchar(char ch, volatile char** video_memory)
 {
+    start_scrolling(video_memory);
     **video_memory = ch;
     *video_memory += 1;
     **video_memory = WHITE_TXT;
