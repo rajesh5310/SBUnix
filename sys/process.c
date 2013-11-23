@@ -67,7 +67,6 @@ void first_cs() {
 
 	pp1 = page_alloc(0);
 	pp2 = page_alloc(0);
-
 	//  print("\n%x", page2pa(pp1));
 	uint64_t *pml4a = (uint64_t *) get_kva(pp1);
 	uint64_t *pml4b = (uint64_t *) get_kva(pp2);
@@ -80,12 +79,15 @@ void first_cs() {
 	thread1.cr3 = PADDR(pml4a);
 	thread1.pml4e = pml4a;
 	thread2.cr3 = PADDR(pml4b);
+	thread2.pml4e = pml4b;
+
 
 	load_icode(&thread1, "bin/hello", 0);
 
 	print("\n thread.entry %x", thread1.entry);
 	thread1.stack[59] = (uint64_t) thread1.entry;
-	thread1.rsp = (uint64_t) &thread1.stack[55];
+	//thread1.stack[59] = (uint64_t) &function1;
+	thread1.rsp = (uint64_t) &thread1.stack[59];
 
 	thread1.stack[63] = 0x23; //  Data Segment
 	thread1.stack[62] = (uint64_t) &thread1.stack[63]; //  RIP
@@ -93,9 +95,12 @@ void first_cs() {
 	thread1.stack[61] = 0x246; //  EFlags
 	thread1.stack[60] = 0x1b; // Code Segment*/
 
-	//load_icode(&thread2, "bin/hello1", 0);
+	/*load_icode(&thread2, "bin/hello1", 0);
+	print("\n thread.entry %x", thread2.entry);
+
 	thread2.stack[59] = (uint64_t) thread2.entry;
-	thread2.rsp = (uint64_t) &thread2.stack[55];
+	//thread2.stack[59] = (uint64_t) &function2;
+	thread2.rsp = (uint64_t) &thread2.stack[59];
 
 	thread2.stack[63] = 0x23; //  Data Segment
 	thread2.stack[62] = (uint64_t) &thread2.stack[63]; //  RIP
@@ -115,7 +120,7 @@ void first_cs() {
 	asm volatile("movq %0, %%cr3":: "a"(thread1.cr3));
 	__asm__("sti");
 
-	print("I am in process virtual address space \n");
+	print("\nI am in process virtual address space");
 
 	//  __asm__ __volatile__("cli");
 	__asm__ __volatile__ (
@@ -124,11 +129,15 @@ void first_cs() {
 			:"r"(thread1.rsp)
 	);
 
+	/*__asm__ __volatile__( "popq %r11");
+	__asm__ __volatile__( "popq %r10");
+	__asm__ __volatile__( "popq %r9");
+	__asm__ __volatile__( "popq %r8");
+	__asm__ __volatile__( "popq %rdi");
+	__asm__ __volatile__( "popq %rsi");
 	__asm__ __volatile__( "popq %rdx");
 	__asm__ __volatile__( "popq %rcx");
-	__asm__ __volatile__( "popq %rbx");
-	__asm__ __volatile__( "popq %rax");
-
+	__asm__ __volatile__( "popq %rax");*/
 	//  print("Going back to kernel space\n");
 
 	//  asm volatile( "cli");
@@ -138,7 +147,30 @@ void first_cs() {
 
 	//   print("Back to kernel space\n");
 
-	__asm__ __volatile__("iretq");
+	/*__asm__ __volatile__(
+				"popq %rdx;"
+				"popq %rcx;"
+				"popq %rbx;"
+				"popq %rax;"
+		);*/
+
+/*    __asm__ __volatile__(
+        "movq %0, %%r15;"
+        :
+        :"r"(&thread1.stack[63])
+    );
+
+    __asm__ __volatile__(
+        "movq %%r15, %0;"
+        :"=r"(tss.rsp0)
+    );*/
+
+	print("\nbefore tss\n");
+
+    /*asm volatile("mov $0x2b,%ax");
+    asm volatile("ltr %ax");
+	tss.rsp0 = (uint64_t)&thread1.stack[63];
+	*/__asm__ __volatile__("iretq");
 }
 
 void switch_to(task* prev, task* next) {
@@ -146,31 +178,47 @@ void switch_to(task* prev, task* next) {
 	// will update the value of the current rsp to the point to the rsp of the next task
 	// this will cause the context switch from prev task to next task
 	// TODO: write the assembly language code
-	__asm__ __volatile__ (
+	/*__asm__ __volatile__ (
 			"pushq %rax;"
 			"pushq %rbx;"
 			"pushq %rcx;"
 			"pushq %rdx;"
-	);
+	);*/
 	__asm__ __volatile__(
 			"movq %%rsp, %0;"
-			:"=m"(thread1.rsp)
+			:"=m"(prev->rsp)
 			:
 			:"memory"
 	);
-	asm volatile("movq %0, %%cr3":: "a"(thread2.cr3));
+	asm volatile("movq %0, %%cr3":: "a"(next->cr3));
 	__asm__ __volatile__ (
 			"movq %0, %%rsp;"
 			:
-			:"m"(thread2.rsp)
+			:"m"(next->rsp)
 			:"memory"
 	);
-	__asm__ __volatile__(
+	/*__asm__ __volatile__(
 			"popq %rdx;"
 			"popq %rcx;"
 			"popq %rbx;"
 			"popq %rax;"
-	);
+	);*/
+
+	 __asm__ __volatile__(
+	        "movq %0, %%r15;"
+	        :
+	        :"r"(next->stack[63])
+	    );
+
+	    /*__asm__ __volatile__(
+	        "movq %%r15, %0;"
+	        :"=r"(tss.rsp0)
+	    );*/
+
+	    /*asm volatile("mov $0x2b,%ax");
+	    asm volatile("ltr %ax");*/
+
+	 tss.rsp0 = (uint64_t)next->stack[63];
 	__asm__("iretq");
 }
 
@@ -179,8 +227,8 @@ void schedule() {
 	// will pop the next task from the ready queue
 	// call switch_to function with prev and next task
 
-	switch_to(&readyQ[1], &readyQ[0]);
-/*
+	//switch_to(&readyQ[1], &readyQ[0]);
+
 
 	if (flag) {
 		flag = false;
@@ -189,24 +237,22 @@ void schedule() {
 		flag = true;
 		switch_to(&readyQ[1], &readyQ[0]);
 	}
-*/
+
 
 }
 
 void function1() {
-	while (1) {
 		print("\nHello\n");
+		while(1);
 		//schedule();
 		//yield();
-	}
 }
 
 void function2() {
-	while (1) {
 		print("World..!!");
+		while(1);
 		//schedule();
 		//yield();
-	}
 }
 
 static void region_alloc(task *t, void *va, size_t len) {

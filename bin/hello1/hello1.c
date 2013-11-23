@@ -1,4 +1,5 @@
-int main(int argc, char* argv[]) {
+#include <stdlib.h>
+int main(int argc, char* argv[], char* envp[]) {
 		volatile char * video_memory =  (volatile char *) (0xFFFFFFFF800B8000 + 160);
 		*video_memory = '2';
 	    video_memory += 1;
@@ -11,6 +12,7 @@ int main(int argc, char* argv[]) {
 	    	    video_memory += 1;
 
 
+	   exit(1);
 	    while(1);
 	    return 0;
 }

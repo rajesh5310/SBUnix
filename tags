@@ -1,0 +1,914 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+-exclude	Makefile	/^	tar -czvf $(USER).tgz --exclude=$(ROOTLIB) --exclude=$(ROOTBIN) --exclude=.empty --exclude=.*.sw? --exclude=*~ LICENSE Makefile linker.script sys bin libc ld include $(ROOTFS)$/;"	m
+AHCI_DEV_NULL	sys/fs.c	7;"	d	file:
+AHCI_DEV_PM	sys/fs.c	10;"	d	file:
+AHCI_DEV_SATA	sys/fs.c	8;"	d	file:
+AHCI_DEV_SEMB	sys/fs.c	9;"	d	file:
+ALLOC_ZERO	include/sys/pmap.h	/^	ALLOC_ZERO = 1<<0,$/;"	e	enum:__anon4
+AR	Makefile	/^AR=ar$/;"	m
+AS	Makefile	/^AS=as$/;"	m
+ASM	sys/string.c	9;"	d	file:
+ASSERT_H	include/assert.h	3;"	d
+ASSERT_H	sys/assert.h	3;"	d
+AVAILABLE	include/define.h	8;"	d
+BINS	Makefile	/^BINS:=$(addprefix $(ROOTFS)\/,$(wildcard bin\/*))$/;"	m
+BIN_SRCS	Makefile	/^BIN_SRCS:=$(wildcard bin\/*\/*.c)$/;"	m
+BIT_SIZE	include/define.h	7;"	d
+BYTE	include/fs.h	/^typedef uint8_t BYTE;$/;"	t
+C	include/sys/gdt.h	17;"	d
+CC	Makefile	/^CC=gcc$/;"	m
+CFLAGS	Makefile	/^CFLAGS=-O1 -Wall -Werror -nostdinc -Iinclude -msoft-float -mno-sse -mno-red-zone -fno-builtin -fPIC -mtune=amdfam10 -g3 -gdwarf-2  -fno-stack-protector$/;"	m
+COLOR	libc/print.c	9;"	d	file:
+COLOR	sys/print.c	9;"	d	file:
+D	include/sys/gdt.h	24;"	d
+DEFS_H	include/defs.h	2;"	d
+DMAbufOffset	include/fs.h	/^        DWORD   DMAbufOffset;   \/\/Byte offset into buffer. First 2 bits must be 0$/;"	m	struct:tagFIS_DMA_SETUP
+DMAbufferID	include/fs.h	/^        QWORD   DMAbufferID;    \/\/ DMA Buffer Identifier. Used to Identify DMA buffer in host memory. SATA Spec says host specific and not in Spec. Trying AHCI spec might work.$/;"	m	struct:tagFIS_DMA_SETUP
+DPL0	include/sys/gdt.h	18;"	d
+DPL1	include/sys/gdt.h	19;"	d
+DPL2	include/sys/gdt.h	20;"	d
+DPL3	include/sys/gdt.h	21;"	d
+DWORD	include/fs.h	/^typedef uint32_t DWORD;$/;"	t
+EI_NIDENT	include/sys/tarfs.h	30;"	d
+ELF_MAGIC	include/sys/tarfs.h	7;"	d
+ELF_PROG_LOAD	include/sys/tarfs.h	8;"	d
+ERROR_H	include/error.h	21;"	d
+EXTPHYSMEM	include/memlayout.h	84;"	d
+E_BAD_ENV	include/error.h	/^        E_BAD_ENV        = 2,        \/\/ Environment doesn't exist or otherwise$/;"	e	enum:__anon8
+E_BAD_PATH	include/error.h	/^        E_BAD_PATH        = 12,        \/\/ Bad path$/;"	e	enum:__anon8
+E_EOF	include/error.h	/^        E_EOF                = 8,        \/\/ Unexpected end of file$/;"	e	enum:__anon8
+E_FAULT	include/error.h	/^        E_FAULT                = 6,        \/\/ Memory fault$/;"	e	enum:__anon8
+E_FILE_EXISTS	include/error.h	/^        E_FILE_EXISTS        = 13,        \/\/ File already exists$/;"	e	enum:__anon8
+E_INVAL	include/error.h	/^        E_INVAL                = 3,        \/\/ Invalid parameter$/;"	e	enum:__anon8
+E_IPC_NOT_RECV	include/error.h	/^        E_IPC_NOT_RECV        = 7,        \/\/ Attempt to send to env that is not recving$/;"	e	enum:__anon8
+E_MAX_OPEN	include/error.h	/^        E_MAX_OPEN        = 10,        \/\/ Too many files are open$/;"	e	enum:__anon8
+E_NOT_EXEC	include/error.h	/^        E_NOT_EXEC        = 14,        \/\/ File not a valid executable$/;"	e	enum:__anon8
+E_NOT_FOUND	include/error.h	/^        E_NOT_FOUND        = 11,         \/\/ File or block not found$/;"	e	enum:__anon8
+E_NOT_SUPP	include/error.h	/^        E_NOT_SUPP        = 15,        \/\/ Operation not supported$/;"	e	enum:__anon8
+E_NO_DISK	include/error.h	/^        E_NO_DISK        = 9,        \/\/ No free space left on disk$/;"	e	enum:__anon8
+E_NO_FREE_ENV	include/error.h	/^        E_NO_FREE_ENV        = 5,        \/\/ Attempt to create a new environment beyond$/;"	e	enum:__anon8
+E_NO_MEM	include/error.h	/^        E_NO_MEM        = 4,        \/\/ Request failed due to memory shortage$/;"	e	enum:__anon8
+E_UNSPECIFIED	include/error.h	/^        E_UNSPECIFIED        = 1,        \/\/ Unspecified or unknown problem$/;"	e	enum:__anon8
+Elf64_Phdr	include/sys/tarfs.h	/^} Elf64_Phdr;$/;"	t	typeref:struct:__anon2
+Elf64_Shdr	include/sys/tarfs.h	/^} Elf64_Shdr;$/;"	t	typeref:struct:__anon3
+Elf_hdr	include/sys/tarfs.h	/^} Elf_hdr;$/;"	t	typeref:struct:__anon1
+FEC_PR	include/mmu.h	144;"	d
+FEC_U	include/mmu.h	146;"	d
+FEC_WR	include/mmu.h	145;"	d
+FIS_DATA	include/fs.h	/^} FIS_DATA;$/;"	t	typeref:struct:tagFIS_DATA
+FIS_DMA_SETUP	include/fs.h	/^} FIS_DMA_SETUP;$/;"	t	typeref:struct:tagFIS_DMA_SETUP
+FIS_PIO_SETUP	include/fs.h	/^} FIS_PIO_SETUP;$/;"	t	typeref:struct:tagFIS_PIO_SETUP
+FIS_REG_D2H	include/fs.h	/^} FIS_REG_D2H;$/;"	t	typeref:struct:tagFIS_REG_D2H
+FIS_REG_H2D	include/fs.h	/^} FIS_REG_H2D;$/;"	t	typeref:struct:tagFIS_REG_H2D
+FIS_TYPE	include/fs.h	/^} FIS_TYPE;$/;"	t	typeref:enum:__anon5
+FIS_TYPE_BIST	include/fs.h	/^    FIS_TYPE_BIST       = 0x58, \/\/ BIST activate FIS - bidirectional$/;"	e	enum:__anon5
+FIS_TYPE_DATA	include/fs.h	/^    FIS_TYPE_DATA       = 0x46, \/\/ Data FIS - bidirectional$/;"	e	enum:__anon5
+FIS_TYPE_DEV_BITS	include/fs.h	/^    FIS_TYPE_DEV_BITS   = 0xA1, \/\/ Set device bits FIS - device to host$/;"	e	enum:__anon5
+FIS_TYPE_DMA_ACT	include/fs.h	/^    FIS_TYPE_DMA_ACT    = 0x39, \/\/ DMA activate FIS - device to host$/;"	e	enum:__anon5
+FIS_TYPE_DMA_SETUP	include/fs.h	/^    FIS_TYPE_DMA_SETUP  = 0x41, \/\/ DMA setup FIS - bidirectional$/;"	e	enum:__anon5
+FIS_TYPE_PIO_SETUP	include/fs.h	/^    FIS_TYPE_PIO_SETUP  = 0x5F, \/\/ PIO setup FIS - device to host$/;"	e	enum:__anon5
+FIS_TYPE_REG_D2H	include/fs.h	/^    FIS_TYPE_REG_D2H    = 0x34, \/\/ Register FIS - device to host$/;"	e	enum:__anon5
+FIS_TYPE_REG_H2D	include/fs.h	/^    FIS_TYPE_REG_H2D    = 0x27, \/\/ Register FIS - host to device$/;"	e	enum:__anon5
+FLAGS_SUP_OFF	include/define.h	13;"	d
+FLAGS_SUP_ON	include/define.h	14;"	d
+GDT_CS	include/sys/gdt.h	14;"	d
+GDT_DS	include/sys/gdt.h	15;"	d
+HBA_MEM	include/fs.h	/^} HBA_MEM;$/;"	t	typeref:struct:tagHBA_MEM
+HBA_PORT	include/fs.h	/^} HBA_PORT;$/;"	t	typeref:struct:tagHBA_PORT
+INITIAL_STACK_SIZE	sys/main.c	31;"	d	file:
+IOPHYSMEM	include/memlayout.h	83;"	d
+IRQ0	include/sys/isr.h	9;"	d
+KADDR	include/sys/pmap.h	36;"	d
+KBCSC_0	include/keyboard.h	/^	KBCSC_0 	= 0x0b,$/;"	e	enum:kbsc
+KBCSC_1	include/keyboard.h	/^	KBCSC_1 	= 0x02,$/;"	e	enum:kbsc
+KBCSC_2	include/keyboard.h	/^	KBCSC_2 	= 0x03,$/;"	e	enum:kbsc
+KBCSC_3	include/keyboard.h	/^	KBCSC_3 	= 0x04,$/;"	e	enum:kbsc
+KBCSC_4	include/keyboard.h	/^	KBCSC_4 	= 0x05,$/;"	e	enum:kbsc
+KBCSC_5	include/keyboard.h	/^	KBCSC_5 	= 0x06,$/;"	e	enum:kbsc
+KBCSC_6	include/keyboard.h	/^	KBCSC_6 	= 0x07,$/;"	e	enum:kbsc
+KBCSC_7	include/keyboard.h	/^	KBCSC_7 	= 0x08,$/;"	e	enum:kbsc
+KBCSC_8	include/keyboard.h	/^	KBCSC_8 	= 0x09,$/;"	e	enum:kbsc
+KBCSC_9	include/keyboard.h	/^	KBCSC_9 	= 0x0a,$/;"	e	enum:kbsc
+KBCSC_A	include/keyboard.h	/^	KBCSC_A = 0x1e,$/;"	e	enum:kbsc
+KBCSC_ALT	include/keyboard.h	/^	KBCSC_ALT = 0x38,$/;"	e	enum:kbsc
+KBCSC_B	include/keyboard.h	/^	KBCSC_B = 0x30,$/;"	e	enum:kbsc
+KBCSC_BACKSLASH	include/keyboard.h	/^	KBCSC_BACKSLASH	= 0x2b,$/;"	e	enum:kbsc
+KBCSC_BACKSPACE	include/keyboard.h	/^	KBCSC_BACKSPACE 			= 0x0e,$/;"	e	enum:kbsc
+KBCSC_C	include/keyboard.h	/^	KBCSC_C = 0x2e,$/;"	e	enum:kbsc
+KBCSC_CAPSLOCK	include/keyboard.h	/^	KBCSC_CAPSLOCK = 0x3a,$/;"	e	enum:kbsc
+KBCSC_CLOSE_CURL	include/keyboard.h	/^	KBCSC_CLOSE_CURL = 0x1b,$/;"	e	enum:kbsc
+KBCSC_COLON	include/keyboard.h	/^    KBCSC_COLON = 0x27,$/;"	e	enum:kbsc
+KBCSC_COMMA	include/keyboard.h	/^	KBCSC_COMMA = 0x33,$/;"	e	enum:kbsc
+KBCSC_CTRL	include/keyboard.h	/^	KBCSC_CTRL = 0x1d,$/;"	e	enum:kbsc
+KBCSC_D	include/keyboard.h	/^	KBCSC_D = 0x20,$/;"	e	enum:kbsc
+KBCSC_DEL	include/keyboard.h	/^	KBCSC_DEL = 0xE071,$/;"	e	enum:kbsc
+KBCSC_DOT	include/keyboard.h	/^	KBCSC_DOT	= 0x34,$/;"	e	enum:kbsc
+KBCSC_E	include/keyboard.h	/^	KBCSC_E		= 0x12,$/;"	e	enum:kbsc
+KBCSC_EQUALS_PLUS	include/keyboard.h	/^	KBCSC_EQUALS_PLUS 			= 0x0d,$/;"	e	enum:kbsc
+KBCSC_ESC	include/keyboard.h	/^	KBCSC_ESC 	= 0x01,$/;"	e	enum:kbsc
+KBCSC_F	include/keyboard.h	/^	KBCSC_F = 0x21,$/;"	e	enum:kbsc
+KBCSC_F1	include/keyboard.h	/^	KBCSC_F1 = 0x3b,$/;"	e	enum:kbsc
+KBCSC_F10	include/keyboard.h	/^	KBCSC_F10= 0x44,$/;"	e	enum:kbsc
+KBCSC_F11	include/keyboard.h	/^	KBCSC_F11= 0x57,$/;"	e	enum:kbsc
+KBCSC_F12	include/keyboard.h	/^	KBCSC_F12= 0x58,$/;"	e	enum:kbsc
+KBCSC_F2	include/keyboard.h	/^	KBCSC_F2 = 0x3c,$/;"	e	enum:kbsc
+KBCSC_F3	include/keyboard.h	/^	KBCSC_F3 = 0x3d,$/;"	e	enum:kbsc
+KBCSC_F4	include/keyboard.h	/^	KBCSC_F4 = 0x3e,$/;"	e	enum:kbsc
+KBCSC_F5	include/keyboard.h	/^	KBCSC_F5 = 0x3f,$/;"	e	enum:kbsc
+KBCSC_F6	include/keyboard.h	/^	KBCSC_F6 = 0x40,$/;"	e	enum:kbsc
+KBCSC_F7	include/keyboard.h	/^	KBCSC_F7 = 0x41,$/;"	e	enum:kbsc
+KBCSC_F8	include/keyboard.h	/^	KBCSC_F8 = 0x42,$/;"	e	enum:kbsc
+KBCSC_F9	include/keyboard.h	/^	KBCSC_F9 = 0x43,$/;"	e	enum:kbsc
+KBCSC_FORWARDSLASH	include/keyboard.h	/^	KBCSC_FORWARDSLASH = 0x35,$/;"	e	enum:kbsc
+KBCSC_G	include/keyboard.h	/^	KBCSC_G = 0x22,$/;"	e	enum:kbsc
+KBCSC_GT	include/keyboard.h	/^	KBCSC_GT = 0x34,$/;"	e	enum:kbsc
+KBCSC_H	include/keyboard.h	/^	KBCSC_H = 0x23,$/;"	e	enum:kbsc
+KBCSC_HOME	include/keyboard.h	/^	KBCSC_HOME= 0x47,$/;"	e	enum:kbsc
+KBCSC_I	include/keyboard.h	/^	KBCSC_I		= 0x17,$/;"	e	enum:kbsc
+KBCSC_J	include/keyboard.h	/^	KBCSC_J = 0x24,$/;"	e	enum:kbsc
+KBCSC_K	include/keyboard.h	/^	KBCSC_K = 0x25,$/;"	e	enum:kbsc
+KBCSC_L	include/keyboard.h	/^	KBCSC_L = 0x26,$/;"	e	enum:kbsc
+KBCSC_LEFTCTRL	include/keyboard.h	/^	KBCSC_LEFTCTRL = 0x1D,$/;"	e	enum:kbsc
+KBCSC_LEFTSHIFT	include/keyboard.h	/^	KBCSC_LEFTSHIFT	= 0x2a,$/;"	e	enum:kbsc
+KBCSC_LT	include/keyboard.h	/^	KBCSC_LT = 0x33,$/;"	e	enum:kbsc
+KBCSC_M	include/keyboard.h	/^	KBCSC_M = 0x32,$/;"	e	enum:kbsc
+KBCSC_MAX	include/keyboard.h	/^	KBCSC_MAX = 0x60,$/;"	e	enum:kbsc
+KBCSC_N	include/keyboard.h	/^	KBCSC_N = 0x31,$/;"	e	enum:kbsc
+KBCSC_NUMLOCK	include/keyboard.h	/^	KBCSC_NUMLOCK= 0x45,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_0	include/keyboard.h	/^	KBCSC_NUMPAD_0 = 0x52,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_1	include/keyboard.h	/^	KBCSC_NUMPAD_1 = 0x4f,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_2	include/keyboard.h	/^	KBCSC_NUMPAD_2 = 0x50,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_3	include/keyboard.h	/^	KBCSC_NUMPAD_3 = 0x51,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_4	include/keyboard.h	/^	KBCSC_NUMPAD_4 = 0x4b,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_5	include/keyboard.h	/^	KBCSC_NUMPAD_5 = 0x4c,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_6	include/keyboard.h	/^	KBCSC_NUMPAD_6 = 0x4d,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_MINUS	include/keyboard.h	/^	KBCSC_NUMPAD_MINUS = 0x4a,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_PERIOD	include/keyboard.h	/^	KBCSC_NUMPAD_PERIOD = 0x53,$/;"	e	enum:kbsc
+KBCSC_NUMPAD_PLUS	include/keyboard.h	/^	KBCSC_NUMPAD_PLUS = 0x4e,$/;"	e	enum:kbsc
+KBCSC_O	include/keyboard.h	/^	KBCSC_O		= 0x18,$/;"	e	enum:kbsc
+KBCSC_OPEN_CURL	include/keyboard.h	/^	KBCSC_OPEN_CURL  = 0x1a,$/;"	e	enum:kbsc
+KBCSC_OR	include/keyboard.h	/^	KBCSC_OR = 0x2B,$/;"	e	enum:kbsc
+KBCSC_P	include/keyboard.h	/^	KBCSC_P		= 0x19,$/;"	e	enum:kbsc
+KBCSC_PGUP	include/keyboard.h	/^	KBCSC_PGUP= 0x49,$/;"	e	enum:kbsc
+KBCSC_PRINTSCREEN	include/keyboard.h	/^	KBCSC_PRINTSCREEN = 0x37,$/;"	e	enum:kbsc
+KBCSC_Q	include/keyboard.h	/^	KBCSC_Q		= 0x10,$/;"	e	enum:kbsc
+KBCSC_QUOTE	include/keyboard.h	/^	KBCSC_QUOTE	= 0x28,$/;"	e	enum:kbsc
+KBCSC_R	include/keyboard.h	/^	KBCSC_R		= 0x13,$/;"	e	enum:kbsc
+KBCSC_RETURN	include/keyboard.h	/^	KBCSC_RETURN = 0x1c,$/;"	e	enum:kbsc
+KBCSC_RIGHTSHIFT	include/keyboard.h	/^	KBCSC_RIGHTSHIFT = 0x36,$/;"	e	enum:kbsc
+KBCSC_S	include/keyboard.h	/^	KBCSC_S = 0x1f,$/;"	e	enum:kbsc
+KBCSC_SCROLLLOCK	include/keyboard.h	/^	KBCSC_SCROLLLOCK= 0x46,$/;"	e	enum:kbsc
+KBCSC_SLASH	include/keyboard.h	/^	KBCSC_SLASH	= 0x35,$/;"	e	enum:kbsc
+KBCSC_SPACE	include/keyboard.h	/^	KBCSC_SPACE = 0x39,$/;"	e	enum:kbsc
+KBCSC_T	include/keyboard.h	/^	KBCSC_T		= 0x14,$/;"	e	enum:kbsc
+KBCSC_TAB	include/keyboard.h	/^	KBCSC_TAB		 			= 0x0f,$/;"	e	enum:kbsc
+KBCSC_TILDE	include/keyboard.h	/^	KBCSC_TILDE	= 0x29,$/;"	e	enum:kbsc
+KBCSC_U	include/keyboard.h	/^	KBCSC_U		= 0x16,$/;"	e	enum:kbsc
+KBCSC_UNDERSCORE_MINUS	include/keyboard.h	/^	KBCSC_UNDERSCORE_MINUS 		= 0x0c,$/;"	e	enum:kbsc
+KBCSC_UP	include/keyboard.h	/^	KBCSC_UP= 0x48,$/;"	e	enum:kbsc
+KBCSC_V	include/keyboard.h	/^	KBCSC_V = 0x2f,$/;"	e	enum:kbsc
+KBCSC_W	include/keyboard.h	/^	KBCSC_W		= 0x11,$/;"	e	enum:kbsc
+KBCSC_X	include/keyboard.h	/^	KBCSC_X = 0x2d,$/;"	e	enum:kbsc
+KBCSC_Y	include/keyboard.h	/^	KBCSC_Y		= 0x15,$/;"	e	enum:kbsc
+KBCSC_Z	include/keyboard.h	/^	KBCSC_Z = 0x2c,$/;"	e	enum:kbsc
+KBC_VECTOR	include/sys/isr.h	10;"	d
+KERNBASE	include/memlayout.h	78;"	d
+KERN_SRCS	Makefile	/^KERN_SRCS:=$(wildcard sys\/*.c sys\/*.s sys\/*\/*.c sys\/*\/*.s)$/;"	m
+L	include/sys/gdt.h	23;"	d
+LD	Makefile	/^LD=ld$/;"	m
+LDLAGS	Makefile	/^LDLAGS=-nostdlib$/;"	m
+LD_SRCS	Makefile	/^LD_SRCS:=$(wildcard ld\/*.c)$/;"	m
+LIBC_SRCS	Makefile	/^LIBC_SRCS:=$(wildcard libc\/*.c libc\/*\/*.c)$/;"	m
+MAX	include/defs.h	56;"	d
+MAXERROR	include/error.h	/^        MAXERROR$/;"	e	enum:__anon8
+MAX_GDT	sys/gdt.c	5;"	d	file:
+MEMBASE	include/memlayout.h	87;"	d
+MEMLAYOUT_H	include/memlayout.h	2;"	d
+MIN	include/defs.h	50;"	d
+MMU_H	include/mmu.h	2;"	d
+MPENTRY_PADDR	include/memlayout.h	129;"	d
+NOT_AVAILABLE	include/define.h	17;"	d
+NPDENTRIES	include/mmu.h	55;"	d
+NPDPENTRIES	include/mmu.h	54;"	d
+NPMLENTRIES	include/mmu.h	53;"	d
+NPTENTRIES	include/mmu.h	56;"	d
+NULL	include/defs.h	5;"	d
+NUMBER_OF_PAGES	include/define.h	4;"	d
+P	include/sys/gdt.h	22;"	d
+PADDR	include/sys/pmap.h	26;"	d
+PAGE_ALIGN	include/define.h	16;"	d
+PAGE_ALIGN_BITS	include/define.h	15;"	d
+PAGE_SIZE	include/define.h	5;"	d
+PAGE_SIZE_HEX	include/define.h	6;"	d
+PDPE	include/mmu.h	43;"	d
+PDPESHIFT	include/mmu.h	66;"	d
+PDX	include/mmu.h	34;"	d
+PDXSHIFT	include/mmu.h	65;"	d
+PFTEMP	include/memlayout.h	124;"	d
+PGADDR	include/mmu.h	50;"	d
+PGOFF	include/mmu.h	47;"	d
+PGSHIFT	include/mmu.h	59;"	d
+PGSIZE	include/mmu.h	58;"	d
+PMAP_H	include/sys/pmap.h	3;"	d
+PML4	include/mmu.h	39;"	d
+PML4SHIFT	include/mmu.h	67;"	d
+PORTS_H	include/ports.h	7;"	d
+PPN	include/mmu.h	30;"	d
+PTE_A	include/mmu.h	75;"	d
+PTE_ADDR	include/mmu.h	91;"	d
+PTE_AVAIL	include/mmu.h	82;"	d
+PTE_D	include/mmu.h	76;"	d
+PTE_MBZ	include/mmu.h	78;"	d
+PTE_P	include/mmu.h	70;"	d
+PTE_PCD	include/mmu.h	74;"	d
+PTE_PS	include/mmu.h	77;"	d
+PTE_PWT	include/mmu.h	73;"	d
+PTE_SYSCALL	include/mmu.h	85;"	d
+PTE_U	include/mmu.h	72;"	d
+PTE_USER	include/mmu.h	88;"	d
+PTE_W	include/mmu.h	71;"	d
+PTSHIFT	include/mmu.h	62;"	d
+PTSIZE	include/mmu.h	61;"	d
+PTX	include/mmu.h	42;"	d
+PTXSHIFT	include/mmu.h	64;"	d
+Page	include/memlayout.h	/^struct Page {$/;"	s
+QWORD	include/fs.h	/^typedef uint64_t QWORD;$/;"	t
+ROOTBIN	Makefile	/^ROOTBIN=$(ROOTFS)\/bin$/;"	m
+ROOTBOOT	Makefile	/^ROOTBOOT=$(ROOTFS)\/boot$/;"	m
+ROOTFS	Makefile	/^ROOTFS=rootfs$/;"	m
+ROOTLIB	Makefile	/^ROOTLIB=$(ROOTFS)\/lib$/;"	m
+ROUNDDOWN	include/defs.h	65;"	d
+ROUNDUP	include/defs.h	71;"	d
+SATA_SIG_ATA	sys/fs.c	3;"	d	file:
+SATA_SIG_ATAPI	sys/fs.c	4;"	d	file:
+SATA_SIG_PM	sys/fs.c	6;"	d	file:
+SATA_SIG_SEMB	sys/fs.c	5;"	d	file:
+STRING_H	include/string.h	2;"	d
+SUBMITTO	Makefile	/^SUBMITTO:=~mferdman\/cse506-submit\/$/;"	m
+SYSCALL_PROTO	include/syscall.h	6;"	d
+TIMER_H	include/sys/timer.h	7;"	d
+TOTAL_LINE	sys/print.c	11;"	d	file:
+TransferCount	include/fs.h	/^        DWORD   TransferCount;  \/\/Number of bytes to transfer. Bit 0 must be 0$/;"	m	struct:tagFIS_DMA_SETUP
+UENVS	include/memlayout.h	102;"	d
+ULIM	include/memlayout.h	89;"	d
+UPAGES	include/memlayout.h	100;"	d
+USTABDATA	include/memlayout.h	126;"	d
+USTACKTOP	include/memlayout.h	114;"	d
+UTEMP	include/memlayout.h	121;"	d
+UTEXT	include/memlayout.h	117;"	d
+UTILS_H	include/utils.h	2;"	d
+UTOP	include/memlayout.h	109;"	d
+UVPT	include/memlayout.h	98;"	d
+UXSTACKTOP	include/memlayout.h	111;"	d
+VIDEO_MEM	libc/print.c	10;"	d	file:
+VIDEO_MEM	sys/print.c	10;"	d	file:
+VIDEO_MEM_END	include/define.h	12;"	d
+VIDEO_MEM_START	include/define.h	11;"	d
+VIRTUAL_KERNEL_BASE	include/define.h	9;"	d
+VIRTUAL_VIDEO_MEM_START	include/define.h	10;"	d
+VPD	include/mmu.h	35;"	d
+VPDPE	include/mmu.h	36;"	d
+VPML4E	include/mmu.h	37;"	d
+VPN	include/mmu.h	31;"	d
+W	include/sys/gdt.h	25;"	d
+WHATEVER_H_INCLUDED	include/print.h	7;"	d
+WHITE_TXT	libc/print.c	8;"	d	file:
+WHITE_TXT	sys/print.c	8;"	d	file:
+WORD	include/fs.h	/^typedef uint16_t WORD;$/;"	t
+X86_64_ARCH_KBC_H_	include/keyboard.h	6;"	d
+_DEFINE_H	include/define.h	2;"	d
+_GDT_H	include/sys/gdt.h	2;"	d
+_PROCESS_H	include/process.h	20;"	d
+_STDIO_H	include/stdio.h	2;"	d
+_STDLIB_H	include/stdlib.h	2;"	d
+_SYSCALL_H	include/syscall.h	2;"	d
+_TARFS_H	include/sys/tarfs.h	2;"	d
+_VMEM_H	include/sys/vmem.h	7;"	d
+__KERNEL_ARCH_X86_64_ISR_H	include/sys/isr.h	8;"	d
+__native_flush_tlb_single	sys/pmap.c	/^ static inline void __native_flush_tlb_single(uint64_t addr)$/;"	f	file:	signature:(uint64_t addr)
+_start	crt/crt1.c	/^void _start(void) {$/;"	f	signature:(void)
+_x86_64_asm_igdt	include/sys/idt.h	/^extern void _x86_64_asm_igdt(struct idt_ptr_struct* idtr);$/;"	p	signature:(struct idt_ptr_struct* idtr)
+_x86_64_asm_igdt	libc/idt.s	/^_x86_64_asm_igdt:$/;"	l
+_x86_64_asm_igdt	sys/idt.s	/^_x86_64_asm_igdt:$/;"	l
+_x86_64_asm_lgdt	sys/gdt.c	/^void _x86_64_asm_lgdt(struct gdtr_t* gdtr, uint64_t cs_idx, uint64_t ds_idx);$/;"	p	file:	signature:(struct gdtr_t* gdtr, uint64_t cs_idx, uint64_t ds_idx)
+_x86_64_asm_lgdt	sys/gdt.s	/^_x86_64_asm_lgdt:$/;"	l
+a	include/fs.h	/^    BYTE    a:1;            \/\/ Auto-activate. Specifies if DMA Activate FIS is needed$/;"	m	struct:tagFIS_DMA_SETUP
+addr	sys/gdt.c	/^	uint64_t addr;$/;"	m	struct:gdtr_t	file:
+assert	include/assert.h	7;"	d
+assert	sys/assert.h	7;"	d
+base	include/sys/idt.h	/^    uint64_t base;$/;"	m	struct:idt_ptr_struct
+base	include/sys/vmem.h	/^uint64_t base, length;$/;"	m	struct:smap_t
+bohc	include/fs.h	/^    DWORD   bohc;       \/\/ 0x28, BIOS\/OS handoff control and status$/;"	m	struct:tagHBA_MEM
+bool	include/defs.h	/^typedef _Bool bool;$/;"	t
+boot	sys/main.c	/^void boot(void)$/;"	f	signature:(void)
+boot_alloc	include/sys/pmap.h	/^void *boot_alloc(uint64_t n);$/;"	p	signature:(uint64_t n)
+boot_alloc	sys/pmap.c	/^boot_alloc(uint64_t n)$/;"	f	signature:(uint64_t n)
+boot_cr3	sys/pmap.c	/^physaddr_t boot_cr3;        \/\/ Physical address of boot time page directory$/;"	v
+boot_map_segment	include/sys/pmap.h	/^void boot_map_segment(pml4e_t *pml4e, uintptr_t la, size_t size, physaddr_t pa, int perm);$/;"	p	signature:(pml4e_t *pml4e, uintptr_t la, size_t size, physaddr_t pa, int perm)
+boot_map_segment	sys/pmap.c	/^boot_map_segment(pml4e_t *pml4e, uintptr_t la, size_t size, physaddr_t pa, int perm)$/;"	f	signature:(pml4e_t *pml4e, uintptr_t la, size_t size, physaddr_t pa, int perm)
+boot_pml4e	sys/pmap.c	/^pml4e_t *boot_pml4e;        \/\/ Kernel's initial page directory$/;"	v
+c	include/fs.h	/^    BYTE    c:1;        \/\/ 1: Command, 0: Control$/;"	m	struct:tagFIS_REG_H2D
+cap	include/fs.h	/^    DWORD   cap;        \/\/ 0x00, Host capability$/;"	m	struct:tagHBA_MEM
+cap2	include/fs.h	/^    DWORD   cap2;       \/\/ 0x24, Host capabilities extended$/;"	m	struct:tagHBA_MEM
+ccc_ctl	include/fs.h	/^    DWORD   ccc_ctl;    \/\/ 0x14, Command completion coalescing control$/;"	m	struct:tagHBA_MEM
+ccc_pts	include/fs.h	/^    DWORD   ccc_pts;    \/\/ 0x18, Command completion coalescing ports$/;"	m	struct:tagHBA_MEM
+change_video_pointer	include/print.h	/^void change_video_pointer();$/;"	p	signature:()
+change_video_pointer	sys/print.c	/^void change_video_pointer()$/;"	f
+char_shift_adjust	libc/keyboard.c	/^static uint8_t char_shift_adjust(uint8_t c, uint8_t shift) {$/;"	f	file:	signature:(uint8_t c, uint8_t shift)
+char_shift_adjust	sys/keyboard.c	/^static uint8_t char_shift_adjust(uint8_t c, uint8_t shift) {$/;"	f	file:	signature:(uint8_t c, uint8_t shift)
+check_page_alloc	sys/pmap.c	/^void check_page_alloc(void);$/;"	p	file:	signature:(void)
+check_page_free_list	sys/pmap.c	/^void check_page_free_list(bool);$/;"	p	file:
+check_type	sys/fs.c	/^static int check_type(HBA_PORT *port)$/;"	f	file:	signature:(HBA_PORT *port)
+checksum	include/sys/tarfs.h	/^	char checksum[8];$/;"	m	struct:posix_header_ustar
+ci	include/fs.h	/^    DWORD   ci;     \/\/ 0x38, command issue$/;"	m	struct:tagHBA_PORT
+clb	include/fs.h	/^    DWORD   clb;        \/\/ 0x00, command list base address, 1K-byte aligned$/;"	m	struct:tagHBA_PORT
+clbu	include/fs.h	/^    DWORD   clbu;       \/\/ 0x04, command list base address upper 32 bits$/;"	m	struct:tagHBA_PORT
+clear_screen	include/print.h	/^void clear_screen();$/;"	p	signature:()
+clear_screen	libc/print.c	/^void clear_screen()$/;"	f
+clear_screen	libc/print.c	/^void clear_screen();$/;"	p	file:
+clear_screen	sys/print.c	/^void clear_screen()$/;"	f
+clear_screen	sys/print.c	/^void clear_screen();$/;"	p	file:
+cmd	include/fs.h	/^    DWORD   cmd;        \/\/ 0x18, command and status$/;"	m	struct:tagHBA_PORT
+command	include/fs.h	/^    BYTE    command;    \/\/ Command register$/;"	m	struct:tagFIS_REG_H2D
+control	include/fs.h	/^    BYTE    control;    \/\/ Control register$/;"	m	struct:tagFIS_REG_H2D
+convert_to_string	libc/print.c	/^char * convert_to_string(unsigned int value, char * str, int base )$/;"	f	signature:(unsigned int value, char * str, int base )
+convert_to_string	libc/print.c	/^char * convert_to_string(unsigned int value, char * str, int base );$/;"	p	file:	signature:(unsigned int value, char * str, int base )
+convert_to_string	sys/print.c	/^char * convert_to_string(uint64_t value, char * str, int base )$/;"	f	signature:(uint64_t value, char * str, int base )
+convert_to_string	sys/print.c	/^char * convert_to_string(uint64_t value, char * str, int base );$/;"	p	file:	signature:(uint64_t value, char * str, int base )
+convert_to_string_user	libc/printf.c	/^char * convert_to_string_user(uint64_t value, char * str, int base )$/;"	f	signature:(uint64_t value, char * str, int base )
+counth	include/fs.h	/^    BYTE    counth;      \/\/ Count register, 15:8$/;"	m	struct:tagFIS_REG_D2H
+counth	include/fs.h	/^    BYTE    counth;     \/\/ Count register, 15:8$/;"	m	struct:tagFIS_PIO_SETUP
+counth	include/fs.h	/^    BYTE    counth;     \/\/ Count register, 15:8$/;"	m	struct:tagFIS_REG_H2D
+countl	include/fs.h	/^    BYTE    countl;      \/\/ Count register, 7:0$/;"	m	struct:tagFIS_REG_D2H
+countl	include/fs.h	/^    BYTE    countl;     \/\/ Count register, 7:0$/;"	m	struct:tagFIS_PIO_SETUP
+countl	include/fs.h	/^    BYTE    countl;     \/\/ Count register, 7:0$/;"	m	struct:tagFIS_REG_H2D
+cr3	include/process.h	/^    uint64_t cr3;           \/\/ current value of CR3 register for process switch$/;"	m	struct:__anon6
+cs	libc/isr.c	/^    uint64_t cs;$/;"	m	struct:isr_stack_frame	file:
+cs	sys/isr.c	/^	uint64_t cs;$/;"	m	struct:isr_stack_frame	file:
+d	include/fs.h	/^    BYTE    d:1;        \/\/ Data transfer direction, 1 - device to host$/;"	m	struct:tagFIS_DMA_SETUP
+d	include/fs.h	/^    BYTE    d:1;        \/\/ Data transfer direction, 1 - device to host$/;"	m	struct:tagFIS_PIO_SETUP
+data	include/fs.h	/^    DWORD   data[1];    \/\/ Payload$/;"	m	struct:tagFIS_DATA
+device	include/fs.h	/^    BYTE    device;      \/\/ Device register$/;"	m	struct:tagFIS_REG_D2H
+device	include/fs.h	/^    BYTE    device;     \/\/ Device register$/;"	m	struct:tagFIS_PIO_SETUP
+device	include/fs.h	/^    BYTE    device;     \/\/ Device register$/;"	m	struct:tagFIS_REG_H2D
+devmajor	include/sys/tarfs.h	/^	char devmajor[8];$/;"	m	struct:posix_header_ustar
+devminor	include/sys/tarfs.h	/^	char devminor[8];$/;"	m	struct:posix_header_ustar
+dpl	include/sys/idt.h	/^    unsigned dpl : 2;$/;"	m	struct:idt_entry_struct
+e_ehsize	include/sys/tarfs.h	/^	uint16_t e_ehsize;$/;"	m	struct:__anon1
+e_entry	include/sys/tarfs.h	/^	uint64_t e_entry;$/;"	m	struct:__anon1
+e_flags	include/sys/tarfs.h	/^	uint32_t e_flags;$/;"	m	struct:__anon1
+e_ident	include/sys/tarfs.h	/^	unsigned char e_ident[EI_NIDENT];$/;"	m	struct:__anon1
+e_machine	include/sys/tarfs.h	/^	uint16_t e_machine;$/;"	m	struct:__anon1
+e_phentsize	include/sys/tarfs.h	/^	uint16_t e_phentsize;$/;"	m	struct:__anon1
+e_phnum	include/sys/tarfs.h	/^	uint16_t e_phnum;$/;"	m	struct:__anon1
+e_phoff	include/sys/tarfs.h	/^	uint64_t e_phoff;$/;"	m	struct:__anon1
+e_shentsize	include/sys/tarfs.h	/^	uint16_t e_shentsize;$/;"	m	struct:__anon1
+e_shnum	include/sys/tarfs.h	/^	uint16_t e_shnum;$/;"	m	struct:__anon1
+e_shoff	include/sys/tarfs.h	/^	uint64_t e_shoff;$/;"	m	struct:__anon1
+e_shstrndx	include/sys/tarfs.h	/^	uint16_t e_shstrndx;$/;"	m	struct:__anon1
+e_status	include/fs.h	/^    BYTE    e_status;   \/\/ New value of status register$/;"	m	struct:tagFIS_PIO_SETUP
+e_type	include/sys/tarfs.h	/^	uint16_t e_type;$/;"	m	struct:__anon1
+e_version	include/sys/tarfs.h	/^	uint32_t e_version;$/;"	m	struct:__anon1
+em_ctl	include/fs.h	/^    DWORD   em_ctl;     \/\/ 0x20, Enclosure management control$/;"	m	struct:tagHBA_MEM
+em_loc	include/fs.h	/^    DWORD   em_loc;     \/\/ 0x1C, Enclosure management location$/;"	m	struct:tagHBA_MEM
+end	sys/pmap.c	/^uintptr_t end;$/;"	v
+entry	include/process.h	/^    uint64_t entry;$/;"	m	struct:__anon6
+error	include/fs.h	/^    BYTE    error;       \/\/ Error register$/;"	m	struct:tagFIS_REG_D2H
+error	include/fs.h	/^    BYTE    error;      \/\/ Error register$/;"	m	struct:tagFIS_PIO_SETUP
+exit	include/stdlib.h	/^void exit(int status);$/;"	p	signature:(int status)
+exit	libc/exit.c	/^void exit(int status) {$/;"	f	signature:(int status)
+false	include/defs.h	/^enum { false, true };$/;"	e	enum:__anon7
+fb	include/fs.h	/^    DWORD   fb;     \/\/ 0x08, FIS base address, 256-byte aligned$/;"	m	struct:tagHBA_PORT
+fbs	include/fs.h	/^    DWORD   fbs;        \/\/ 0x40, FIS-based switch control$/;"	m	struct:tagHBA_PORT
+fbu	include/fs.h	/^    DWORD   fbu;        \/\/ 0x0C, FIS base address upper 32 bits$/;"	m	struct:tagHBA_PORT
+featureh	include/fs.h	/^    BYTE    featureh;   \/\/ Feature register, 15:8$/;"	m	struct:tagFIS_REG_H2D
+featurel	include/fs.h	/^    BYTE    featurel;   \/\/ Feature register, 7:0$/;"	m	struct:tagFIS_REG_H2D
+first_cs	include/process.h	/^void first_cs();$/;"	p	signature:()
+first_cs	sys/process.c	/^void first_cs() {$/;"	f
+fis_type	include/fs.h	/^    BYTE    fis_type;    \/\/ FIS_TYPE_REG_D2H$/;"	m	struct:tagFIS_REG_D2H
+fis_type	include/fs.h	/^    BYTE    fis_type;   \/\/ FIS_TYPE_DATA$/;"	m	struct:tagFIS_DATA
+fis_type	include/fs.h	/^    BYTE    fis_type;   \/\/ FIS_TYPE_DMA_SETUP$/;"	m	struct:tagFIS_DMA_SETUP
+fis_type	include/fs.h	/^    BYTE    fis_type;   \/\/ FIS_TYPE_PIO_SETUP$/;"	m	struct:tagFIS_PIO_SETUP
+fis_type	include/fs.h	/^    BYTE    fis_type;   \/\/ FIS_TYPE_REG_H2D$/;"	m	struct:tagFIS_REG_H2D
+flag	sys/process.c	/^bool flag = true;$/;"	v
+function1	sys/process.c	/^void function1() {$/;"	f
+function1	sys/process.c	/^void function1();$/;"	p	file:
+function2	sys/process.c	/^void function2() {$/;"	f
+function2	sys/process.c	/^void function2();$/;"	p	file:
+gdt	sys/gdt.c	/^uint64_t gdt[MAX_GDT] = {$/;"	v
+gdtr	sys/gdt.c	/^static struct gdtr_t gdtr = {$/;"	v	typeref:struct:gdtr_t	file:
+gdtr_t	sys/gdt.c	/^struct gdtr_t {$/;"	s	file:
+get_file_sections	include/sys/tarfs.h	/^void get_file_sections(char* filename);$/;"	p	signature:(char* filename)
+get_file_sections	sys/tarfs.c	/^void get_file_sections(char* filename)$/;"	f	signature:(char* filename)
+get_kva	sys/process.c	/^void * get_kva(struct Page *pp) {$/;"	f	signature:(struct Page *pp)
+get_tochar	include/keyboard.h	/^uint8_t get_tochar(uint8_t b, uint8_t shift, uint8_t ctrl);$/;"	p	signature:(uint8_t b, uint8_t shift, uint8_t ctrl)
+get_tochar	libc/keyboard.c	/^uint8_t get_tochar(uint8_t b, uint8_t shift , uint8_t ctrl) {$/;"	f	signature:(uint8_t b, uint8_t shift , uint8_t ctrl)
+get_tochar	sys/keyboard.c	/^uint8_t get_tochar(uint8_t b, uint8_t shift , uint8_t ctrl) {$/;"	f	signature:(uint8_t b, uint8_t shift , uint8_t ctrl)
+ghc	include/fs.h	/^    DWORD   ghc;        \/\/ 0x04, Global host control$/;"	m	struct:tagHBA_MEM
+gid	include/sys/tarfs.h	/^	char gid[8];$/;"	m	struct:posix_header_ustar
+gname	include/sys/tarfs.h	/^	char gname[32];$/;"	m	struct:posix_header_ustar
+handle_keyboard_irq	include/keyboard.h	/^void			handle_keyboard_irq();$/;"	p	signature:()
+handle_keyboard_irq	libc/keyboard.c	/^void handle_keyboard_irq() {$/;"	f
+handle_keyboard_irq	sys/keyboard.c	/^void handle_keyboard_irq() {$/;"	f
+i	include/fs.h	/^    BYTE    i:1;         \/\/ Interrupt bit$/;"	m	struct:tagFIS_REG_D2H
+i	include/fs.h	/^    BYTE    i:1;        \/\/ Interrupt bit$/;"	m	struct:tagFIS_DMA_SETUP
+i	include/fs.h	/^    BYTE    i:1;        \/\/ Interrupt bit$/;"	m	struct:tagFIS_PIO_SETUP
+icc	include/fs.h	/^    BYTE    icc;        \/\/ Isochronous command completion$/;"	m	struct:tagFIS_REG_H2D
+idt_entries	libc/idt.c	/^idt_entry_t idt_entries[256];$/;"	v
+idt_entries	sys/idt.c	/^idt_entry_t idt_entries[256];$/;"	v
+idt_entry_struct	include/sys/idt.h	/^struct idt_entry_struct$/;"	s
+idt_entry_t	include/sys/idt.h	/^typedef struct idt_entry_struct idt_entry_t;$/;"	t	typeref:struct:idt_entry_struct
+idt_ptr	libc/idt.c	/^idt_ptr_t idt_ptr;$/;"	v
+idt_ptr	sys/idt.c	/^idt_ptr_t idt_ptr;$/;"	v
+idt_ptr_struct	include/sys/idt.h	/^struct idt_ptr_struct$/;"	s
+idt_ptr_t	include/sys/idt.h	/^typedef struct idt_ptr_struct idt_ptr_t;$/;"	t	typeref:struct:idt_ptr_struct
+idt_set_gate	libc/idt.c	/^static void idt_set_gate(int num,uint16_t selector, unsigned ist, unsigned type, unsigned dpl, uint64_t offset)$/;"	f	file:	signature:(int num,uint16_t selector, unsigned ist, unsigned type, unsigned dpl, uint64_t offset)
+idt_set_gate	libc/idt.c	/^static void idt_set_gate(int,uint16_t, unsigned , unsigned , unsigned , uint64_t);$/;"	p	file:	signature:(int,uint16_t, unsigned , unsigned , unsigned , uint64_t)
+idt_set_gate	sys/idt.c	/^static void idt_set_gate(int num,uint16_t selector, unsigned ist, unsigned type, unsigned dpl, uint64_t offset)$/;"	f	file:	signature:(int num,uint16_t selector, unsigned ist, unsigned type, unsigned dpl, uint64_t offset)
+idt_set_gate	sys/idt.c	/^static void idt_set_gate(int,uint16_t, unsigned , unsigned , unsigned , uint64_t);$/;"	p	file:	signature:(int,uint16_t, unsigned , unsigned , unsigned , uint64_t)
+ie	include/fs.h	/^    DWORD   ie;     \/\/ 0x14, interrupt enable$/;"	m	struct:tagHBA_PORT
+init_idt	libc/idt.c	/^static void init_idt()$/;"	f	file:
+init_idt	libc/idt.c	/^static void init_idt();$/;"	p	file:
+init_idt	sys/idt.c	/^static void init_idt()$/;"	f	file:
+init_idt	sys/idt.c	/^static void init_idt();$/;"	p	file:
+init_phy_mem	include/sys/vmem.h	/^void init_phy_mem(uint32_t*, void* , char*);$/;"	p	signature:(uint32_t*, void* , char*)
+init_timer	include/sys/timer.h	/^void init_timer();$/;"	p	signature:()
+init_timer	libc/timer.c	/^void init_timer()$/;"	f
+init_timer	sys/timer.c	/^void init_timer()$/;"	f
+int16_t	include/defs.h	/^typedef short int16_t;$/;"	t
+int32_t	include/defs.h	/^typedef int int32_t;$/;"	t
+int64_t	include/defs.h	/^typedef long long int64_t;$/;"	t
+int8_t	include/defs.h	/^typedef __signed char int8_t;$/;"	t
+intptr_t	include/defs.h	/^typedef int64_t intptr_t;$/;"	t
+is	include/fs.h	/^    DWORD   is;     \/\/ 0x08, Interrupt status$/;"	m	struct:tagHBA_MEM
+is	include/fs.h	/^    DWORD   is;     \/\/ 0x10, interrupt status$/;"	m	struct:tagHBA_PORT
+is_file_exists	include/sys/tarfs.h	/^uint64_t is_file_exists(char* filename);$/;"	p	signature:(char* filename)
+is_file_exists	sys/tarfs.c	/^uint64_t is_file_exists(char* filename)$/;"	f	signature:(char* filename)
+isr0	libc/idt.c	/^extern void isr0(); \/\/DUMMY_INTERRUPT(0)$/;"	p	file:
+isr0	sys/idt.c	/^extern void isr0(); \/\/DUMMY_INTERRUPT(0)$/;"	p	file:
+isr1	sys/idt.c	/^extern void isr1();$/;"	p	file:
+isr10	sys/idt.c	/^extern void isr10();$/;"	p	file:
+isr11	sys/idt.c	/^extern void isr11();$/;"	p	file:
+isr12	sys/idt.c	/^extern void isr12();$/;"	p	file:
+isr128	sys/idt.c	/^extern void isr128();$/;"	p	file:
+isr13	sys/idt.c	/^extern void isr13();$/;"	p	file:
+isr14	sys/idt.c	/^extern void isr14();$/;"	p	file:
+isr15	sys/idt.c	/^extern void isr15();$/;"	p	file:
+isr16	sys/idt.c	/^extern void isr16();$/;"	p	file:
+isr17	sys/idt.c	/^extern void isr17();$/;"	p	file:
+isr18	sys/idt.c	/^extern void isr18();$/;"	p	file:
+isr19	sys/idt.c	/^extern void isr19();$/;"	p	file:
+isr2	sys/idt.c	/^extern void isr2();$/;"	p	file:
+isr20	sys/idt.c	/^extern void isr20();$/;"	p	file:
+isr21	sys/idt.c	/^extern void isr21();$/;"	p	file:
+isr22	sys/idt.c	/^extern void isr22();$/;"	p	file:
+isr23	sys/idt.c	/^extern void isr23();$/;"	p	file:
+isr24	sys/idt.c	/^extern void isr24();$/;"	p	file:
+isr25	sys/idt.c	/^extern void isr25();$/;"	p	file:
+isr26	sys/idt.c	/^extern void isr26();$/;"	p	file:
+isr27	sys/idt.c	/^extern void isr27();$/;"	p	file:
+isr28	sys/idt.c	/^extern void isr28();$/;"	p	file:
+isr29	sys/idt.c	/^extern void isr29();$/;"	p	file:
+isr3	sys/idt.c	/^extern void isr3();$/;"	p	file:
+isr30	sys/idt.c	/^extern void isr30();$/;"	p	file:
+isr31	sys/idt.c	/^extern void isr31();$/;"	p	file:
+isr32	libc/idt.c	/^extern void isr32();$/;"	p	file:
+isr32	sys/idt.c	/^extern void isr32();$/;"	p	file:
+isr33	libc/idt.c	/^extern void isr33();$/;"	p	file:
+isr33	sys/idt.c	/^extern void isr33();$/;"	p	file:
+isr4	sys/idt.c	/^extern void isr4();$/;"	p	file:
+isr5	sys/idt.c	/^extern void isr5();$/;"	p	file:
+isr6	sys/idt.c	/^extern void isr6();$/;"	p	file:
+isr7	sys/idt.c	/^extern void isr7();$/;"	p	file:
+isr8	sys/idt.c	/^extern void isr8();$/;"	p	file:
+isr9	sys/idt.c	/^extern void isr9();$/;"	p	file:
+isr_handler0	libc/isr.c	/^void isr_handler0(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler0	sys/isr.c	/^void isr_handler0(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler1	sys/isr.c	/^void isr_handler1(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler10	sys/isr.c	/^void isr_handler10(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler11	sys/isr.c	/^void isr_handler11(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler12	sys/isr.c	/^void isr_handler12(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler128	sys/isr.c	/^void isr_handler128(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler13	sys/isr.c	/^void isr_handler13(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler14	sys/isr.c	/^void isr_handler14(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler15	sys/isr.c	/^void isr_handler15(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler16	sys/isr.c	/^void isr_handler16(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler17	sys/isr.c	/^void isr_handler17(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler18	sys/isr.c	/^void isr_handler18(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler19	sys/isr.c	/^void isr_handler19(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler2	sys/isr.c	/^void isr_handler2(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler20	sys/isr.c	/^void isr_handler20(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler21	sys/isr.c	/^void isr_handler21(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler22	sys/isr.c	/^void isr_handler22(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler23	sys/isr.c	/^void isr_handler23(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler24	sys/isr.c	/^void isr_handler24(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler25	sys/isr.c	/^void isr_handler25(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler26	sys/isr.c	/^void isr_handler26(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler27	sys/isr.c	/^void isr_handler27(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler28	sys/isr.c	/^void isr_handler28(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler29	sys/isr.c	/^void isr_handler29(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler3	sys/isr.c	/^void isr_handler3(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler30	sys/isr.c	/^void isr_handler30(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler31	sys/isr.c	/^void isr_handler31(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler32	libc/isr.c	/^void isr_handler32(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler32	sys/isr.c	/^void isr_handler32(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler33	libc/isr.c	/^void isr_handler33(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler33	sys/isr.c	/^void isr_handler33(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler4	sys/isr.c	/^void isr_handler4(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler5	sys/isr.c	/^void isr_handler5(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler6	sys/isr.c	/^void isr_handler6(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler7	sys/isr.c	/^void isr_handler7(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler8	sys/isr.c	/^void isr_handler8(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_handler9	sys/isr.c	/^void isr_handler9(struct isr_stack_frame *stack) {$/;"	f	signature:(struct isr_stack_frame *stack)
+isr_stack_frame	libc/isr.c	/^struct isr_stack_frame$/;"	s	file:
+isr_stack_frame	sys/isr.c	/^struct isr_stack_frame {$/;"	s	file:
+ist	include/sys/idt.h	/^    unsigned ist : 3;$/;"	m	struct:idt_entry_struct
+itoa	sys/print.c	/^void itoa(int i, char b[]);$/;"	p	file:	signature:(int i, char b[])
+kbc_bytes_in_buffer	include/keyboard.h	/^size_t			kbc_bytes_in_buffer();$/;"	p	signature:()
+kbc_initialise	include/keyboard.h	/^void 			kbc_initialise();$/;"	p	signature:()
+kbc_read	include/keyboard.h	/^uint32_t		kbc_read(void* dst, size_t size);$/;"	p	signature:(void* dst, size_t size)
+kbc_readchar	include/keyboard.h	/^uint32_t		kbc_readchar();$/;"	p	signature:()
+kbsc	include/keyboard.h	/^enum kbsc {$/;"	g
+lba0	include/fs.h	/^    BYTE    lba0;        \/\/ LBA low register, 7:0$/;"	m	struct:tagFIS_REG_D2H
+lba0	include/fs.h	/^    BYTE    lba0;       \/\/ LBA low register, 7:0$/;"	m	struct:tagFIS_PIO_SETUP
+lba0	include/fs.h	/^    BYTE    lba0;       \/\/ LBA low register, 7:0$/;"	m	struct:tagFIS_REG_H2D
+lba1	include/fs.h	/^    BYTE    lba1;        \/\/ LBA mid register, 15:8$/;"	m	struct:tagFIS_REG_D2H
+lba1	include/fs.h	/^    BYTE    lba1;       \/\/ LBA mid register, 15:8$/;"	m	struct:tagFIS_PIO_SETUP
+lba1	include/fs.h	/^    BYTE    lba1;       \/\/ LBA mid register, 15:8$/;"	m	struct:tagFIS_REG_H2D
+lba2	include/fs.h	/^    BYTE    lba2;        \/\/ LBA high register, 23:16$/;"	m	struct:tagFIS_REG_D2H
+lba2	include/fs.h	/^    BYTE    lba2;       \/\/ LBA high register, 23:16$/;"	m	struct:tagFIS_PIO_SETUP
+lba2	include/fs.h	/^    BYTE    lba2;       \/\/ LBA high register, 23:16$/;"	m	struct:tagFIS_REG_H2D
+lba3	include/fs.h	/^    BYTE    lba3;        \/\/ LBA register, 31:24$/;"	m	struct:tagFIS_REG_D2H
+lba3	include/fs.h	/^    BYTE    lba3;       \/\/ LBA register, 31:24$/;"	m	struct:tagFIS_PIO_SETUP
+lba3	include/fs.h	/^    BYTE    lba3;       \/\/ LBA register, 31:24$/;"	m	struct:tagFIS_REG_H2D
+lba4	include/fs.h	/^    BYTE    lba4;        \/\/ LBA register, 39:32$/;"	m	struct:tagFIS_REG_D2H
+lba4	include/fs.h	/^    BYTE    lba4;       \/\/ LBA register, 39:32$/;"	m	struct:tagFIS_PIO_SETUP
+lba4	include/fs.h	/^    BYTE    lba4;       \/\/ LBA register, 39:32$/;"	m	struct:tagFIS_REG_H2D
+lba5	include/fs.h	/^    BYTE    lba5;        \/\/ LBA register, 47:40$/;"	m	struct:tagFIS_REG_D2H
+lba5	include/fs.h	/^    BYTE    lba5;       \/\/ LBA register, 47:40$/;"	m	struct:tagFIS_PIO_SETUP
+lba5	include/fs.h	/^    BYTE    lba5;       \/\/ LBA register, 47:40$/;"	m	struct:tagFIS_REG_H2D
+lcr3	sys/process.c	/^static __inline void lcr3(uint64_t val) {$/;"	f	file:	signature:(uint64_t val)
+length	include/sys/vmem.h	/^uint64_t base, length;$/;"	m	struct:smap_t
+limit	include/sys/idt.h	/^    uint16_t limit;$/;"	m	struct:idt_ptr_struct
+linkname	include/sys/tarfs.h	/^	char linkname[100];$/;"	m	struct:posix_header_ustar
+load_icode	sys/process.c	/^static void load_icode(task *t, char *filename, size_t size) {$/;"	f	file:	signature:(task *t, char *filename, size_t size)
+load_icode	sys/process.c	/^static void load_icode(task *t, char *filename, size_t size);$/;"	p	file:	signature:(task *t, char *filename, size_t size)
+load_irq	include/sys/idt.h	/^void load_irq();$/;"	p	signature:()
+load_irq	libc/idt.c	/^void load_irq()$/;"	f
+load_irq	sys/idt.c	/^void load_irq()$/;"	f
+loader_stack	sys/main.c	/^uint32_t* loader_stack;$/;"	v
+magic	include/sys/tarfs.h	/^	char magic[6];$/;"	m	struct:posix_header_ustar
+main	bin/hello/hello.c	/^int main(int argc, char* argv[], char* envp[]) {$/;"	f	signature:(int argc, char* argv[], char* envp[])
+main	bin/hello1/hello1.c	/^int main(int argc, char* argv[], char* envp[]) {$/;"	f	signature:(int argc, char* argv[], char* envp[])
+main	bin/test/test.c	/^int main(int argc, char* argv[]) {$/;"	f	signature:(int argc, char* argv[])
+main	include/stdlib.h	/^int main(int argc, char* argv[], char* envp[]);$/;"	p	signature:(int argc, char* argv[], char* envp[])
+memcmp	include/string.h	/^int memcmp(const void *s1, const void *s2, size_t len);$/;"	p	signature:(const void *s1, const void *s2, size_t len)
+memcmp	sys/string.c	/^int memcmp(const void *v1, const void *v2, size_t n) {$/;"	f	signature:(const void *v1, const void *v2, size_t n)
+memcpy	include/string.h	/^void *  memcpy(void *dst, const void *src, size_t n);$/;"	p	signature:(void *dst, const void *src, size_t n)
+memcpy	sys/string.c	/^memcpy(void *dst, const void *src, size_t n) {$/;"	f	signature:(void *dst, const void *src, size_t n)
+memfind	include/string.h	/^void *  memfind(const void *s, int c, size_t len);$/;"	p	signature:(const void *s, int c, size_t len)
+memfind	sys/string.c	/^memfind(const void *s, int c, size_t n) {$/;"	f	signature:(const void *s, int c, size_t n)
+memmove	include/string.h	/^void *  memmove(void *dst, const void *src, size_t len);$/;"	p	signature:(void *dst, const void *src, size_t len)
+memmove	sys/string.c	/^void* memmove(void *dst, const void *src, size_t n) {$/;"	f	signature:(void *dst, const void *src, size_t n)
+memset	include/ports.h	/^void memset(void *dest, uint8_t val, uint32_t len);$/;"	p	signature:(void *dest, uint8_t val, uint32_t len)
+memset	include/string.h	/^void *  memset(void *dst, uint64_t c, size_t len);$/;"	p	signature:(void *dst, uint64_t c, size_t len)
+memset	libc/ports.c	/^void memset(void *dest, uint8_t val, uint32_t len)$/;"	f	signature:(void *dest, uint8_t val, uint32_t len)
+memset	sys/ports.c	/^void memset(void *dest, uint8_t val, uint32_t len)$/;"	f	signature:(void *dest, uint8_t val, uint32_t len)
+mm_init	include/sys/pmap.h	/^void mm_init(uint32_t* , void* , void*);$/;"	p	signature:(uint32_t* , void* , void*)
+mm_init	sys/pmap.c	/^void mm_init(uint32_t* modulep, void* physbase, void* physfree)$/;"	f	signature:(uint32_t* modulep, void* physbase, void* physfree)
+mmio_map_region	include/sys/pmap.h	/^void *	mmio_map_region(physaddr_t pa, size_t size);$/;"	p	signature:(physaddr_t pa, size_t size)
+mode	include/sys/tarfs.h	/^	char mode[8];$/;"	m	struct:posix_header_ustar
+move_cursor	libc/print.c	/^void move_cursor(int x, int y, volatile char ** vidmem )$/;"	f	signature:(int x, int y, volatile char ** vidmem )
+move_cursor	libc/print.c	/^void move_cursor(int x, int y, volatile char ** vidmem );$/;"	p	file:	signature:(int x, int y, volatile char ** vidmem )
+move_cursor	sys/print.c	/^void move_cursor(int x, int y, volatile char ** vidmem )$/;"	f	signature:(int x, int y, volatile char ** vidmem )
+move_cursor	sys/print.c	/^void move_cursor(int x, int y, volatile char ** vidmem );$/;"	p	file:	signature:(int x, int y, volatile char ** vidmem )
+mtime	include/sys/tarfs.h	/^	char mtime[12];$/;"	m	struct:posix_header_ustar
+n	include/syscall.h	/^SYSCALL_PROTO(1)(uint64_t n, uint64_t a1) {$/;"	v
+name	include/sys/tarfs.h	/^	char name[100];$/;"	m	struct:posix_header_ustar
+npages	sys/pmap.c	/^size_t npages;          \/\/ Amount of physical memory (in pages)$/;"	v
+npages_basemem	sys/pmap.c	/^static size_t npages_basemem;   \/\/ Amount of base memory (in pages)$/;"	v	file:
+num_process	sys/process.c	/^int num_process = 2;$/;"	v
+octalToDecimal	include/utils.h	/^uint64_t octalToDecimal(uint64_t octal);$/;"	p	signature:(uint64_t octal)
+octalToDecimal	sys/utils.c	/^uint64_t octalToDecimal(uint64_t octal)$/;"	f	signature:(uint64_t octal)
+off_t	include/defs.h	/^typedef int32_t off_t;$/;"	t
+offset_high	include/sys/idt.h	/^    uint32_t offset_high;$/;"	m	struct:idt_entry_struct
+offset_low	include/sys/idt.h	/^    uint16_t offset_low;$/;"	m	struct:idt_entry_struct
+offset_mid	include/sys/idt.h	/^    uint16_t offset_mid;$/;"	m	struct:idt_entry_struct
+offsetof	include/defs.h	78;"	d
+outb	include/ports.h	/^inline void outb(uint16_t port, uint8_t data);$/;"	p	signature:(uint16_t port, uint8_t data)
+outb	libc/ports.c	/^inline void outb(uint16_t port, uint8_t data) {$/;"	f	signature:(uint16_t port, uint8_t data)
+outb	sys/ports.c	/^inline void outb(uint16_t port, uint8_t data) {$/;"	f	signature:(uint16_t port, uint8_t data)
+p	include/sys/idt.h	/^    unsigned p : 1;$/;"	m	struct:idt_entry_struct
+p_align	include/sys/tarfs.h	/^	uint64_t p_align;$/;"	m	struct:__anon2
+p_filesz	include/sys/tarfs.h	/^	uint64_t p_filesz;$/;"	m	struct:__anon2
+p_flags	include/sys/tarfs.h	/^	uint32_t p_flags;$/;"	m	struct:__anon2
+p_memsz	include/sys/tarfs.h	/^	uint64_t p_memsz;$/;"	m	struct:__anon2
+p_offset	include/sys/tarfs.h	/^	uint64_t p_offset;$/;"	m	struct:__anon2
+p_paddr	include/sys/tarfs.h	/^	uint64_t p_paddr;$/;"	m	struct:__anon2
+p_type	include/sys/tarfs.h	/^	uint32_t p_type;$/;"	m	struct:__anon2
+p_vaddr	include/sys/tarfs.h	/^	uint64_t p_vaddr;$/;"	m	struct:__anon2
+pa2page	include/sys/pmap.h	/^pa2page(physaddr_t pa)$/;"	f	signature:(physaddr_t pa)
+pad	include/sys/tarfs.h	/^	char pad[12];$/;"	m	struct:posix_header_ustar
+page2kva	include/sys/pmap.h	/^page2kva(struct Page *pp)$/;"	f	signature:(struct Page *pp)
+page2pa	include/sys/pmap.h	/^page2pa(struct Page *pp)$/;"	f	signature:(struct Page *pp)
+page2ppn	include/sys/pmap.h	/^page2ppn(struct Page *pp)$/;"	f	signature:(struct Page *pp)
+page_alloc	include/sys/pmap.h	/^struct Page * page_alloc(int alloc_flags);$/;"	p	signature:(int alloc_flags)
+page_alloc	sys/pmap.c	/^page_alloc(int alloc_flags)$/;"	f	signature:(int alloc_flags)
+page_decref	include/sys/pmap.h	/^void	page_decref(struct Page *pp);$/;"	p	signature:(struct Page *pp)
+page_decref	sys/pmap.c	/^page_decref(struct Page* pp)$/;"	f	signature:(struct Page* pp)
+page_free	include/sys/pmap.h	/^void	page_free(struct Page *pp);$/;"	p	signature:(struct Page *pp)
+page_free	sys/pmap.c	/^page_free(struct Page *pp)$/;"	f	signature:(struct Page *pp)
+page_free_list	sys/pmap.c	/^static struct Page *page_free_list; \/\/ Free list of physical pages$/;"	v	typeref:struct:Page	file:
+page_init	include/sys/pmap.h	/^void	page_init(void);$/;"	p	signature:(void)
+page_init	sys/pmap.c	/^page_init(void)$/;"	f	signature:(void)
+page_insert	include/sys/pmap.h	/^int	page_insert(pml4e_t *pml4e, struct Page *pp, void *va, int perm);$/;"	p	signature:(pml4e_t *pml4e, struct Page *pp, void *va, int perm)
+page_insert	sys/pmap.c	/^ page_insert(pml4e_t *pml4e, struct Page *pp, void *va, int perm)$/;"	f	signature:(pml4e_t *pml4e, struct Page *pp, void *va, int perm)
+page_lookup	include/sys/pmap.h	/^struct Page *page_lookup(pml4e_t *pml4e, void *va, pte_t **pte_store);$/;"	p	signature:(pml4e_t *pml4e, void *va, pte_t **pte_store)
+page_lookup	sys/pmap.c	/^ page_lookup(pml4e_t *pml4e, void *va, pte_t **pte_store)$/;"	f	signature:(pml4e_t *pml4e, void *va, pte_t **pte_store)
+page_remove	include/sys/pmap.h	/^void	page_remove(pml4e_t *pml4e, void *va);$/;"	p	signature:(pml4e_t *pml4e, void *va)
+page_remove	sys/pmap.c	/^ page_remove(pml4e_t *pml4e, void *va)$/;"	f	signature:(pml4e_t *pml4e, void *va)
+pages	sys/pmap.c	/^struct Page *pages;     \/\/ Physical page state array$/;"	v	typeref:struct:Page
+panic	include/print.h	/^void panic(char *message);$/;"	p	signature:(char *message)
+panic	sys/print.c	/^void panic(char *message)$/;"	f	signature:(char *message)
+pde_t	include/memlayout.h	/^typedef uint64_t pde_t;$/;"	t
+pdpe_t	include/memlayout.h	/^typedef uint64_t pdpe_t;$/;"	t
+pdpe_walk	include/sys/pmap.h	/^pde_t *pdpe_walk(pdpe_t *pdpe,const void *va,int create);$/;"	p	signature:(pdpe_t *pdpe,const void *va,int create)
+pdpe_walk	sys/pmap.c	/^pdpe_walk(pdpe_t *pdpe,const void *va,int create){$/;"	f	signature:(pdpe_t *pdpe,const void *va,int create)
+pgdir_walk	include/sys/pmap.h	/^pte_t *pgdir_walk(pde_t *pgdir, const void *va, int create);$/;"	p	signature:(pde_t *pgdir, const void *va, int create)
+pgdir_walk	sys/pmap.c	/^pgdir_walk(pde_t *pgdir, const void *va, int create)$/;"	f	signature:(pde_t *pgdir, const void *va, int create)
+physaddr_t	include/defs.h	/^typedef uint64_t physaddr_t;$/;"	t
+pi	include/fs.h	/^    DWORD   pi;     \/\/ 0x0C, Port implemented$/;"	m	struct:tagHBA_MEM
+pml4e	include/process.h	/^    uint64_t* pml4e;$/;"	m	struct:__anon6
+pml4e_t	include/memlayout.h	/^typedef uint64_t pml4e_t;$/;"	t
+pml4e_walk	include/sys/pmap.h	/^pte_t *pml4e_walk(pml4e_t *pml4e, const void *va, int create);$/;"	p	signature:(pml4e_t *pml4e, const void *va, int create)
+pml4e_walk	sys/pmap.c	/^pml4e_walk(pml4e_t *pml4e, const void *va, int create)$/;"	f	signature:(pml4e_t *pml4e, const void *va, int create)
+pmport	include/fs.h	/^    BYTE    pmport:4;    \/\/ Port multiplier$/;"	m	struct:tagFIS_REG_D2H
+pmport	include/fs.h	/^    BYTE    pmport:4;   \/\/ Port multiplier$/;"	m	struct:tagFIS_DATA
+pmport	include/fs.h	/^    BYTE    pmport:4;   \/\/ Port multiplier$/;"	m	struct:tagFIS_DMA_SETUP
+pmport	include/fs.h	/^    BYTE    pmport:4;   \/\/ Port multiplier$/;"	m	struct:tagFIS_PIO_SETUP
+pmport	include/fs.h	/^    BYTE    pmport:4;   \/\/ Port multiplier$/;"	m	struct:tagFIS_REG_H2D
+popAllReg	sys/process.s	/^	popAllReg:$/;"	l
+port_inb	include/ports.h	/^inline uint8_t port_inb(uint16_t port);$/;"	p	signature:(uint16_t port)
+port_inb	libc/ports.c	/^inline uint8_t port_inb(uint16_t port) {$/;"	f	signature:(uint16_t port)
+port_inb	sys/ports.c	/^inline uint8_t port_inb(uint16_t port) {$/;"	f	signature:(uint16_t port)
+ports	include/fs.h	/^    HBA_PORT    ports[1];   \/\/ 1 ~ 32$/;"	m	struct:tagHBA_MEM
+posix_header_ustar	include/sys/tarfs.h	/^struct posix_header_ustar {$/;"	s
+power	include/utils.h	/^uint64_t power (uint64_t x, int e);$/;"	p	signature:(uint64_t x, int e)
+power	sys/utils.c	/^uint64_t power (uint64_t x, int e) {$/;"	f	signature:(uint64_t x, int e)
+pp_link	include/memlayout.h	/^        struct Page *pp_link;$/;"	m	struct:Page	typeref:struct:Page::Page
+pp_ref	include/memlayout.h	/^	uint16_t pp_ref;$/;"	m	struct:Page
+ppn_t	include/defs.h	/^typedef uint64_t ppn_t;$/;"	t
+prefix	include/sys/tarfs.h	/^	char prefix[155];$/;"	m	struct:posix_header_ustar
+print	include/print.h	/^int print(char *message, ...);$/;"	p	signature:(char *message, ...)
+print	libc/print.c	/^int print(char *message, ...)$/;"	f	signature:(char *message, ...)
+print	sys/print.c	/^int print(char *message, ...)$/;"	f	signature:(char *message, ...)
+print_backspace	include/print.h	/^void print_backspace();$/;"	p	signature:()
+print_backspace	libc/print.c	/^void print_backspace()$/;"	f
+print_backspace	sys/print.c	/^void print_backspace()$/;"	f
+print_line	include/print.h	/^int print_line(int x, int y, char *message, ...);$/;"	p	signature:(int x, int y, char *message, ...)
+print_line	libc/print.c	/^int print_line(int x, int y, char *message, ...)$/;"	f	signature:(int x, int y, char *message, ...)
+print_line	libc/print.c	/^int print_line(int x, int y, char *message, ...);$/;"	p	file:	signature:(int x, int y, char *message, ...)
+print_line	sys/print.c	/^int print_line(int x, int y, char *message, ...)$/;"	f	signature:(int x, int y, char *message, ...)
+print_line	sys/print.c	/^int print_line(int x, int y, char *message, ...);$/;"	p	file:	signature:(int x, int y, char *message, ...)
+printf	include/stdio.h	/^int printf(const char *format, ...);$/;"	p	signature:(const char *format, ...)
+printf	include/stdlib.h	/^int printf(char *message, ...);$/;"	p	signature:(char *message, ...)
+printf	libc/printf.c	/^int printf(char *message, ...)$/;"	f	signature:(char *message, ...)
+probe_port	include/fs.h	/^ void probe_port(HBA_MEM *abar);$/;"	p	signature:(HBA_MEM *abar)
+probe_port	sys/fs.c	/^void probe_port(HBA_MEM *abar)$/;"	f	signature:(HBA_MEM *abar)
+pte_t	include/memlayout.h	/^typedef uint64_t pte_t;$/;"	t
+pushAllReg	sys/process.s	/^	pushAllReg:$/;"	l
+put_line_feed	libc/print.c	/^void put_line_feed(volatile char ** vidmen)$/;"	f	signature:(volatile char ** vidmen)
+put_line_feed	libc/print.c	/^void put_line_feed(volatile char ** vidmen);$/;"	p	file:	signature:(volatile char ** vidmen)
+put_line_feed	sys/print.c	/^void put_line_feed(volatile char ** vidmen)$/;"	f	signature:(volatile char ** vidmen)
+put_line_feed	sys/print.c	/^void put_line_feed(volatile char ** vidmen);$/;"	p	file:	signature:(volatile char ** vidmen)
+putchar	libc/print.c	/^int putchar(char** ch, volatile char** video_memory)$/;"	f	signature:(char** ch, volatile char** video_memory)
+putchar	libc/print.c	/^int putchar(char** ch, volatile char** video_memory);$/;"	p	file:	signature:(char** ch, volatile char** video_memory)
+putchar	sys/print.c	/^int putchar(char ch, volatile char** video_memory)$/;"	f	signature:(char ch, volatile char** video_memory)
+putchar	sys/print.c	/^int putchar(char ch, volatile char** video_memory);$/;"	p	file:	signature:(char ch, volatile char** video_memory)
+putchar_color	libc/print.c	/^int putchar_color(char** ch, int colour,  volatile char** video_memory);$/;"	p	file:	signature:(char** ch, int colour, volatile char** video_memory)
+putchar_color	libc/print.c	/^int putchar_color(char** ch, int colour, volatile char** video_memory)$/;"	f	signature:(char** ch, int colour, volatile char** video_memory)
+putchar_user	libc/printf.c	/^int putchar_user(char ch)$/;"	f	signature:(char ch)
+putchar_user	libc/printf.c	/^int putchar_user(char ch);$/;"	p	file:	signature:(char ch)
+puts	include/print.h	/^void puts(char *str);$/;"	p	signature:(char *str)
+puts	sys/print.c	/^void puts(char *str)$/;"	f	signature:(char *str)
+readyQ	sys/process.c	/^task readyQ[5];$/;"	v
+region_alloc	sys/process.c	/^static void region_alloc(task *t, void *va, size_t len) {$/;"	f	file:	signature:(task *t, void *va, size_t len)
+reload_gdt	include/sys/gdt.h	/^void reload_gdt();$/;"	p	signature:()
+reload_gdt	sys/gdt.c	/^void reload_gdt() {$/;"	f
+reload_idt	include/sys/idt.h	/^void reload_idt();$/;"	p	signature:()
+reload_idt	libc/idt.c	/^void reload_idt()$/;"	f
+reload_idt	sys/idt.c	/^void reload_idt()$/;"	f
+reserved	include/sys/gdt.h	/^	uint32_t reserved;$/;"	m	struct:tss_t
+reserved0	include/sys/idt.h	/^    unsigned reserved0 : 5;$/;"	m	struct:idt_entry_struct
+reserved1	include/sys/idt.h	/^    uint32_t reserved1;$/;"	m	struct:idt_entry_struct
+resvd	include/fs.h	/^        DWORD   resvd;          \/\/Reserved$/;"	m	struct:tagFIS_DMA_SETUP
+rflags	libc/isr.c	/^    uint64_t rflags;$/;"	m	struct:isr_stack_frame	file:
+rflags	sys/isr.c	/^	uint64_t rflags;$/;"	m	struct:isr_stack_frame	file:
+rip	libc/isr.c	/^    uint64_t rip;$/;"	m	struct:isr_stack_frame	file:
+rip	sys/isr.c	/^	uint64_t rip;$/;"	m	struct:isr_stack_frame	file:
+rsp	include/process.h	/^    uint64_t rsp;           \/\/ stack pointer$/;"	m	struct:__anon6
+rsp	libc/isr.c	/^    uint64_t rsp;$/;"	m	struct:isr_stack_frame	file:
+rsp	sys/isr.c	/^	uint64_t rsp;$/;"	m	struct:isr_stack_frame	file:
+rsp0	include/sys/gdt.h	/^	uint64_t rsp0;$/;"	m	struct:tss_t
+rsv	include/fs.h	/^    BYTE    rsv[0xA0-0x2C];$/;"	m	struct:tagHBA_MEM
+rsv0	include/fs.h	/^    BYTE    rsv0:1;     \/\/ Reserved$/;"	m	struct:tagFIS_DMA_SETUP
+rsv0	include/fs.h	/^    BYTE    rsv0:1;     \/\/ Reserved$/;"	m	struct:tagFIS_PIO_SETUP
+rsv0	include/fs.h	/^    BYTE    rsv0:2;      \/\/ Reserved$/;"	m	struct:tagFIS_REG_D2H
+rsv0	include/fs.h	/^    BYTE    rsv0:3;     \/\/ Reserved$/;"	m	struct:tagFIS_REG_H2D
+rsv0	include/fs.h	/^    BYTE    rsv0:4;     \/\/ Reserved$/;"	m	struct:tagFIS_DATA
+rsv0	include/fs.h	/^    DWORD   rsv0;       \/\/ 0x1C, Reserved$/;"	m	struct:tagHBA_PORT
+rsv1	include/fs.h	/^    BYTE    rsv1:1;      \/\/ Reserved$/;"	m	struct:tagFIS_REG_D2H
+rsv1	include/fs.h	/^    BYTE    rsv1:1;$/;"	m	struct:tagFIS_PIO_SETUP
+rsv1	include/fs.h	/^    BYTE    rsv1[2];    \/\/ Reserved$/;"	m	struct:tagFIS_DATA
+rsv1	include/fs.h	/^    BYTE    rsv1[4];    \/\/ Reserved$/;"	m	struct:tagFIS_REG_H2D
+rsv1	include/fs.h	/^    DWORD   rsv1[11];   \/\/ 0x44 ~ 0x6F, Reserved$/;"	m	struct:tagHBA_PORT
+rsv2	include/fs.h	/^    BYTE    rsv2;        \/\/ Reserved$/;"	m	struct:tagFIS_REG_D2H
+rsv2	include/fs.h	/^    BYTE    rsv2;       \/\/ Reserved$/;"	m	struct:tagFIS_PIO_SETUP
+rsv3	include/fs.h	/^    BYTE    rsv3;       \/\/ Reserved$/;"	m	struct:tagFIS_PIO_SETUP
+rsv3	include/fs.h	/^    BYTE    rsv3[2];     \/\/ Reserved$/;"	m	struct:tagFIS_REG_D2H
+rsv4	include/fs.h	/^    BYTE    rsv4[2];    \/\/ Reserved$/;"	m	struct:tagFIS_PIO_SETUP
+rsv4	include/fs.h	/^    BYTE    rsv4[4];     \/\/ Reserved$/;"	m	struct:tagFIS_REG_D2H
+rsvd	include/fs.h	/^        DWORD   rsvd;           \/\/More reserved$/;"	m	struct:tagFIS_DMA_SETUP
+rsved	include/fs.h	/^        BYTE    rsved[2];       \/\/ Reserved$/;"	m	struct:tagFIS_DMA_SETUP
+sact	include/fs.h	/^    DWORD   sact;       \/\/ 0x34, SATA active (SCR3:SActive)$/;"	m	struct:tagHBA_PORT
+scanf	include/stdio.h	/^int scanf(const char *format, ...);$/;"	p	signature:(const char *format, ...)
+schedule	include/process.h	/^void schedule();$/;"	p	signature:()
+schedule	sys/process.c	/^void schedule() {$/;"	f
+sctl	include/fs.h	/^    DWORD   sctl;       \/\/ 0x2C, SATA control (SCR2:SControl)$/;"	m	struct:tagHBA_PORT
+sd_dpl	sys/gdt.c	/^	uint64_t sd_dpl:2;     \/* segment descriptor priority level *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_gran	sys/gdt.c	/^	uint64_t sd_gran:1;    \/* limit granularity (byte\/page) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_hibase	sys/gdt.c	/^	uint64_t sd_hibase:40; \/* segment base address (msb) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_hilimit	sys/gdt.c	/^	uint64_t sd_hilimit:4; \/* segment extent (msb) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_lobase	sys/gdt.c	/^	uint64_t sd_lobase:24; \/* segment base address (lsb) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_lolimit	sys/gdt.c	/^	uint64_t sd_lolimit:16;\/* segment extent (lsb) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_p	sys/gdt.c	/^	uint64_t sd_p:1;       \/* segment descriptor present *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_type	sys/gdt.c	/^	uint64_t sd_type:5;    \/* segment type *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_xx1	sys/gdt.c	/^	uint64_t sd_xx1:3;     \/* avl, long and def32 (not used) *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_xx2	sys/gdt.c	/^	uint64_t sd_xx2:8;     \/* reserved *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_xx3	sys/gdt.c	/^	uint64_t sd_xx3:19;    \/* reserved *\/$/;"	m	struct:sys_segment_descriptor	file:
+sd_zero	sys/gdt.c	/^	uint64_t sd_zero:5;    \/* must be zero *\/$/;"	m	struct:sys_segment_descriptor	file:
+selector	include/sys/idt.h	/^    uint16_t selector;$/;"	m	struct:idt_entry_struct
+serr	include/fs.h	/^    DWORD   serr;       \/\/ 0x30, SATA error (SCR1:SError)$/;"	m	struct:tagHBA_PORT
+set_interrupt	libc/isr.s	/^set_interrupt 0$/;"	l
+set_interrupt	libc/isr.s	/^set_interrupt 32$/;"	l
+set_interrupt	libc/isr.s	/^set_interrupt 33$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 0$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 1$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 10$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 11$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 12$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 128$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 13$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 14$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 15$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 16$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 17$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 18$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 19$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 2$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 20$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 21$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 22$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 23$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 24$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 25$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 26$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 27$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 28$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 29$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 3$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 30$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 31$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 32$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 33$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 4$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 5$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 6$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 7$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 8$/;"	l
+set_interrupt	sys/isr.s	/^set_interrupt 9$/;"	l
+setup_tss	include/sys/gdt.h	/^void setup_tss();$/;"	p	signature:()
+setup_tss	sys/gdt.c	/^void setup_tss() {$/;"	f
+sh_addr	include/sys/tarfs.h	/^	uint64_t sh_addr;$/;"	m	struct:__anon3
+sh_addralign	include/sys/tarfs.h	/^	uint64_t sh_addralign;$/;"	m	struct:__anon3
+sh_entsize	include/sys/tarfs.h	/^	uint64_t sh_entsize;$/;"	m	struct:__anon3
+sh_flags	include/sys/tarfs.h	/^	uint64_t sh_flags;$/;"	m	struct:__anon3
+sh_info	include/sys/tarfs.h	/^	uint32_t sh_info;$/;"	m	struct:__anon3
+sh_link	include/sys/tarfs.h	/^	uint32_t sh_link;$/;"	m	struct:__anon3
+sh_name	include/sys/tarfs.h	/^	uint32_t sh_name;$/;"	m	struct:__anon3
+sh_offset	include/sys/tarfs.h	/^	uint64_t sh_offset;$/;"	m	struct:__anon3
+sh_size	include/sys/tarfs.h	/^	uint64_t sh_size;$/;"	m	struct:__anon3
+sh_type	include/sys/tarfs.h	/^	uint32_t sh_type;$/;"	m	struct:__anon3
+sig	include/fs.h	/^    DWORD   sig;        \/\/ 0x24, signature$/;"	m	struct:tagHBA_PORT
+size	include/sys/tarfs.h	/^	char size[12];$/;"	m	struct:posix_header_ustar
+size	sys/gdt.c	/^	uint16_t size;$/;"	m	struct:gdtr_t	file:
+size_t	include/defs.h	/^typedef uint64_t size_t;$/;"	t
+smap	include/sys/vmem.h	/^}__attribute__((packed)) *smap;$/;"	v	typeref:struct:smap_t
+smap_t	include/sys/vmem.h	/^struct smap_t {$/;"	s
+sntf	include/fs.h	/^    DWORD   sntf;       \/\/ 0x3C, SATA notification (SCR4:SNotification)$/;"	m	struct:tagHBA_PORT
+ss	libc/isr.c	/^    uint64_t ss;$/;"	m	struct:isr_stack_frame	file:
+ss	sys/isr.c	/^	uint64_t ss;$/;"	m	struct:isr_stack_frame	file:
+ssize_t	include/defs.h	/^typedef int64_t ssize_t;$/;"	t
+ssts	include/fs.h	/^    DWORD   ssts;       \/\/ 0x28, SATA status (SCR0:SStatus)$/;"	m	struct:tagHBA_PORT
+stack	include/process.h	/^    uint64_t stack[1024];       \/\/ process local stack$/;"	m	struct:__anon6
+stack	sys/main.c	/^char stack[INITIAL_STACK_SIZE];$/;"	v
+start	sys/main.c	/^void start(uint32_t* modulep, void* physbase, void* physfree)$/;"	f	signature:(uint32_t* modulep, void* physbase, void* physfree)
+start_scroller	sys/print.c	/^void start_scroller(volatile char** video_memory)$/;"	f	signature:(volatile char** video_memory)
+start_scrolling	sys/print.c	/^void start_scrolling(volatile char** video_memory)$/;"	f	signature:(volatile char** video_memory)
+static_assert	include/assert.h	11;"	d
+static_assert	sys/assert.h	11;"	d
+status	include/fs.h	/^    BYTE    status;      \/\/ Status register$/;"	m	struct:tagFIS_REG_D2H
+status	include/fs.h	/^    BYTE    status;     \/\/ Status register$/;"	m	struct:tagFIS_PIO_SETUP
+stoi	include/utils.h	/^long stoi(const char *s);$/;"	p	signature:(const char *s)
+stoi	sys/utils.c	/^long stoi(const char *s)$/;"	f	signature:(const char *s)
+strcat	sys/string.c	/^strcat(char *dst, const char *src) {$/;"	f	signature:(char *dst, const char *src)
+strchr	include/string.h	/^char *  strchr(const char *s, char c);$/;"	p	signature:(const char *s, char c)
+strchr	sys/string.c	/^strchr(const char *s, char c) {$/;"	f	signature:(const char *s, char c)
+strcmp	include/string.h	/^int strcmp(const char *s1, const char *s2);$/;"	p	signature:(const char *s1, const char *s2)
+strcmp	sys/string.c	/^int strcmp(const char *p, const char *q) {$/;"	f	signature:(const char *p, const char *q)
+strcpy	include/string.h	/^char *  strcpy(char *dst, const char *src);$/;"	p	signature:(char *dst, const char *src)
+strcpy	sys/string.c	/^strcpy(char *dst, const char *src) {$/;"	f	signature:(char *dst, const char *src)
+strfind	include/string.h	/^char *  strfind(const char *s, char c);$/;"	p	signature:(const char *s, char c)
+strfind	sys/string.c	/^strfind(const char *s, char c) {$/;"	f	signature:(const char *s, char c)
+strlcpy	include/string.h	/^size_t  strlcpy(char *dst, const char *src, size_t size);$/;"	p	signature:(char *dst, const char *src, size_t size)
+strlcpy	sys/string.c	/^size_t strlcpy(char *dst, const char *src, size_t size) {$/;"	f	signature:(char *dst, const char *src, size_t size)
+strlen	include/string.h	/^int strlen(const char *s);$/;"	p	signature:(const char *s)
+strlen	sys/string.c	/^int strlen(const char *s) {$/;"	f	signature:(const char *s)
+strncmp	include/string.h	/^int strncmp(const char *s1, const char *s2, size_t size);$/;"	p	signature:(const char *s1, const char *s2, size_t size)
+strncmp	sys/string.c	/^int strncmp(const char *p, const char *q, size_t n) {$/;"	f	signature:(const char *p, const char *q, size_t n)
+strncpy	include/string.h	/^char *  strncpy(char *dst, const char *src, size_t size);$/;"	p	signature:(char *dst, const char *src, size_t size)
+strncpy	sys/string.c	/^strncpy(char *dst, const char *src, size_t size) {$/;"	f	signature:(char *dst, const char *src, size_t size)
+strnlen	include/string.h	/^int strnlen(const char *s, size_t size);$/;"	p	signature:(const char *s, size_t size)
+strnlen	sys/string.c	/^int strnlen(const char *s, size_t size) {$/;"	f	signature:(const char *s, size_t size)
+strtol	include/string.h	/^long    strtol(const char *s, char **endptr, int base);$/;"	p	signature:(const char *s, char **endptr, int base)
+strtol	sys/string.c	/^long strtol(const char *s, char **endptr, int base) {$/;"	f	signature:(const char *s, char **endptr, int base)
+switch_to	sys/process.c	/^void switch_to(task* prev, task* next) {$/;"	f	signature:(task* prev, task* next)
+sys_segment_descriptor	sys/gdt.c	/^struct sys_segment_descriptor {$/;"	s	file:
+tagFIS_DATA	include/fs.h	/^typedef struct tagFIS_DATA$/;"	s
+tagFIS_DMA_SETUP	include/fs.h	/^typedef struct tagFIS_DMA_SETUP$/;"	s
+tagFIS_PIO_SETUP	include/fs.h	/^typedef struct tagFIS_PIO_SETUP$/;"	s
+tagFIS_REG_D2H	include/fs.h	/^typedef struct tagFIS_REG_D2H$/;"	s
+tagFIS_REG_H2D	include/fs.h	/^typedef struct tagFIS_REG_H2D$/;"	s
+tagHBA_MEM	include/fs.h	/^typedef volatile struct tagHBA_MEM$/;"	s
+tagHBA_PORT	include/fs.h	/^typedef volatile struct tagHBA_PORT$/;"	s
+task	include/process.h	/^} task;$/;"	t	typeref:struct:__anon6
+tc	include/fs.h	/^    WORD    tc;     \/\/ Transfer count$/;"	m	struct:tagFIS_PIO_SETUP
+tfd	include/fs.h	/^    DWORD   tfd;        \/\/ 0x20, task file data$/;"	m	struct:tagHBA_PORT
+thread1	sys/process.c	/^task thread1;$/;"	v
+thread2	sys/process.c	/^task thread2;$/;"	v
+tick	libc/timer.c	/^uint32_t tick = 0;$/;"	v
+tick	sys/timer.c	/^uint32_t tick = 0;$/;"	v
+timer_callback	include/sys/timer.h	/^void timer_callback();$/;"	p	signature:()
+timer_callback	libc/timer.c	/^void timer_callback()$/;"	f
+timer_callback	sys/timer.c	/^void timer_callback()$/;"	f
+tlb_invalidate	include/sys/pmap.h	/^void	tlb_invalidate(pml4e_t *pml4e, void *va);$/;"	p	signature:(pml4e_t *pml4e, void *va)
+tlb_invalidate	sys/pmap.c	/^ tlb_invalidate(pml4e_t *pml4e, void *va)$/;"	f	signature:(pml4e_t *pml4e, void *va)
+true	include/defs.h	/^enum { false, true };$/;"	e	enum:__anon7
+tss	include/sys/gdt.h	/^}__attribute__((packed)) tss;$/;"	v	typeref:struct:tss_t
+tss_t	include/sys/gdt.h	/^struct tss_t {$/;"	s
+type	include/sys/idt.h	/^    unsigned type : 4;$/;"	m	struct:idt_entry_struct
+type	include/sys/vmem.h	/^uint32_t type;$/;"	m	struct:smap_t
+typeflag	include/sys/tarfs.h	/^	char typeflag[1];$/;"	m	struct:posix_header_ustar
+uid	include/sys/tarfs.h	/^	char uid[8];$/;"	m	struct:posix_header_ustar
+uint16_t	include/defs.h	/^typedef unsigned short uint16_t;$/;"	t
+uint32_t	include/defs.h	/^typedef unsigned int uint32_t;$/;"	t
+uint64_t	include/defs.h	/^typedef unsigned long long uint64_t;$/;"	t
+uint8_t	include/defs.h	/^typedef unsigned char uint8_t;$/;"	t
+uintptr_t	include/defs.h	/^typedef uint64_t uintptr_t;$/;"	t
+uname	include/sys/tarfs.h	/^	char uname[32];$/;"	m	struct:posix_header_ustar
+unused	include/sys/gdt.h	/^	uint32_t unused[11];$/;"	m	struct:tss_t
+update_cursor	include/print.h	/^void update_cursor(int row, int col);$/;"	p	signature:(int row, int col)
+update_cursor	libc/print.c	/^void update_cursor(int row, int col)$/;"	f	signature:(int row, int col)
+update_cursor	sys/print.c	/^void update_cursor(int row, int col)$/;"	f	signature:(int row, int col)
+update_cursor_current_loc	include/print.h	/^void update_cursor_current_loc();$/;"	p	signature:()
+update_cursor_current_loc	libc/print.c	/^void update_cursor_current_loc()$/;"	f
+update_cursor_current_loc	sys/print.c	/^void update_cursor_current_loc()$/;"	f
+user_mem_assert	include/sys/pmap.h	/^void	user_mem_assert(struct Env *env, const void *va, size_t len, int perm);$/;"	p	signature:(struct Env *env, const void *va, size_t len, int perm)
+user_mem_check	include/sys/pmap.h	/^int	user_mem_check(struct Env *env, const void *va, size_t len, int perm);$/;"	p	signature:(struct Env *env, const void *va, size_t len, int perm)
+va_arg	libc/print.c	14;"	d	file:
+va_arg	libc/printf.c	6;"	d	file:
+va_arg	sys/print.c	16;"	d	file:
+va_end	libc/print.c	15;"	d	file:
+va_end	libc/printf.c	7;"	d	file:
+va_end	sys/print.c	17;"	d	file:
+va_list	libc/print.c	/^typedef __builtin_va_list va_list;$/;"	t	file:
+va_list	libc/printf.c	/^typedef __builtin_va_list va_list;$/;"	t	file:
+va_list	sys/print.c	/^typedef __builtin_va_list va_list;$/;"	t	file:
+va_start	libc/print.c	13;"	d	file:
+va_start	libc/printf.c	5;"	d	file:
+va_start	sys/print.c	15;"	d	file:
+vendor	include/fs.h	/^    BYTE    vendor[0x100-0xA0];$/;"	m	struct:tagHBA_MEM
+vendor	include/fs.h	/^    DWORD   vendor[4];  \/\/ 0x70 ~ 0x7F, vendor specific$/;"	m	struct:tagHBA_PORT
+version	include/sys/tarfs.h	/^	char version[2];$/;"	m	struct:posix_header_ustar
+vid_memory	libc/print.c	/^volatile char *vid_memory = (char *) 0xb8000;$/;"	v
+vid_memory	sys/print.c	/^volatile char *vid_memory = (char *) VIDEO_MEM;$/;"	v
+video_memory	libc/print.c	/^volatile char * video_memory =  (volatile char *) (VIDEO_MEM + 160);$/;"	v
+video_memory	sys/print.c	/^volatile char * video_memory =  (volatile char *) (VIDEO_MEM + 160);$/;"	v
+vs	include/fs.h	/^    DWORD   vs;     \/\/ 0x10, Version$/;"	m	struct:tagHBA_MEM
+yield	sys/process.c	27;"	d	file:
+zero	include/sys/idt.h	/^    unsigned zero : 1;$/;"	m	struct:idt_entry_struct

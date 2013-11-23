@@ -19,15 +19,12 @@
 typedef __builtin_va_list va_list;
 
 void clear_screen();
-int putchar(char** ch, volatile char** video_memory);
-int putchar_new(char ch, volatile char** video_memory);
-char * convert_to_string(unsigned int value, char * str, int base );
+int putchar(char ch, volatile char** video_memory);
+char * convert_to_string(uint64_t value, char * str, int base );
 void move_cursor(int x, int y, volatile char ** vidmem );
 void put_line_feed(volatile char ** vidmen);
 volatile char *vid_memory = (char *) VIDEO_MEM;
 int print_line(int x, int y, char *message, ...);
-int putchar_color(char** ch, int colour,  volatile char** video_memory);
-//uint64_t VIDEO_MEM = 0xB8000;
 volatile char * video_memory =  (volatile char *) (VIDEO_MEM + 160);
 void itoa(int i, char b[]);
 void start_scroller(volatile char** video_memory)
@@ -129,8 +126,8 @@ int print(char *message, ...)
     char temp_char;
     va_list vl;
     void *temp_m;
-    int p_add;
-    int count;
+    uint64_t p_add;
+    uint64_t count;
 
     va_start(vl, message);
     message_local = message;
@@ -139,7 +136,7 @@ int print(char *message, ...)
 
         if(*message_local != 37 && *message_local != '\n')
         {
-            putchar(&message_local, &video_memory);
+            putchar(*message_local, &video_memory);
             message_local++;
             continue;
         }
@@ -158,46 +155,46 @@ int print(char *message, ...)
                 //temp_str = NULL;
                 temp_str = va_arg(vl, char *);
                 while(*temp_str) {
-                    putchar(&temp_str, &video_memory);
+                    putchar(*temp_str, &video_memory);
                     temp_str++;
                 }
                 message_local = message_local + 1;
                 break;
             case 'd':
-                temp_int = va_arg(vl, int);
+                temp_int = va_arg(vl, uint64_t);
                 convert_to_string(temp_int, temp_str_i, 10);
                 count = 0;
                 while(temp_str_i[count]!='\0') {
-                    putchar_new(temp_str_i[count], &video_memory);
+                    putchar(temp_str_i[count], &video_memory);
                     count++;
                 }
                 message_local = message_local + 1;
                 break;
             case 'x':
-                //temp_str = NULL;
-            	temp_int = va_arg(vl, int);
+                temp_str = NULL;
+            	temp_int = (uint64_t)va_arg(vl, uint64_t);
 				convert_to_string(temp_int, temp_str_i, 16);
 				count = 0;
 				while(temp_str_i[count]!='\0') {
-					putchar_new(temp_str_i[count], &video_memory);
+					putchar(temp_str_i[count], &video_memory);
 					count++;
 				}
 				message_local = message_local + 1;
 				break;
             case 'c':
-                //temp_str = NULL;
-                temp_char = va_arg(vl, int);
+                temp_str = NULL;
+                temp_char = va_arg(vl, uint64_t);
                 temp_str = &temp_char;
-                putchar(&temp_str, &video_memory);
+                putchar(*temp_str, &video_memory);
                 message_local = message_local + 1;
                 break;
             case 'p':
-                //temp_str = NULL;
+                temp_str = NULL;
                 temp_m =  va_arg(vl,  void *);
-                p_add = (long unsigned int) temp_m;
+                p_add = (uint64_t) temp_m;
                 convert_to_string(p_add, temp_str, 16);
                 while(*temp_str) {
-                    putchar(&temp_str, &video_memory);
+                    putchar(*temp_str, &video_memory);
                     temp_str++;
                 }
                 message_local = message_local + 1;
@@ -233,7 +230,7 @@ int print_line(int x, int y, char *message, ...)
 
         if(*message_local != 37 && *message_local != '\n')
         {
-            putchar_color(&message_local, 0x0b , &video_mem);
+            putchar(*message_local, &video_mem);
             message_local++;
             continue;
         }
@@ -249,10 +246,10 @@ int print_line(int x, int y, char *message, ...)
         {
         	char temp_str_i[1024],  *temp_str;
             case 's':
-                //temp_str = NULL;
+                temp_str = NULL;
                 temp_str = va_arg(vl, char *);
                 while(*temp_str) {
-                    putchar_color(&temp_str, 0x0b,  &video_mem);
+                    putchar(*temp_str, &video_mem);
                     temp_str++;
                 }
                 message_local = message_local + 1;
@@ -262,35 +259,35 @@ int print_line(int x, int y, char *message, ...)
 				convert_to_string(temp_int, temp_str_i, 10);
 				count = 0;
 				while(temp_str_i[count]!='\0') {
-					putchar_new(temp_str_i[count], &video_mem);
+					putchar(temp_str_i[count], &video_mem);
 					count++;
 				}
 				message_local = message_local + 1;
 				break;
             case 'x':
-                //temp_str = NULL;
+                temp_str = NULL;
                 temp_int = va_arg(vl, int);
                 convert_to_string(temp_int, temp_str, 16);
                 while(*temp_str) {
-                	putchar_color(&temp_str, 0x0b,  &video_mem);
+                	putchar(*temp_str, &video_mem);
                     temp_str++;
                 }
                 message_local = message_local + 1;
                 break;
             case 'c':
-                //temp_str = NULL;
+                temp_str = NULL;
                 temp_char = va_arg(vl, int);
                 temp_str = &temp_char;
-                putchar_color(&temp_str, 0x0b,  &video_mem);
+                putchar(*temp_str, &video_mem);
                 message_local = message_local + 1;
                 break;
             case 'p':
-                //temp_str = NULL;
+                temp_str = NULL;
                 temp_m =  va_arg(vl,  void *);
                 p_add = (long unsigned int) temp_m;
                 convert_to_string(p_add, temp_str, 16);
                 while(*temp_str) {
-                	putchar_color(&temp_str, 0x0b,  &video_mem);
+                	putchar(*temp_str, &video_mem);
                     temp_str++;
                 }
                 message_local = message_local + 1;
@@ -350,31 +347,7 @@ void update_cursor_current_loc()
 /*
 * Function that prints character to screen
 */
-int putchar_color(char** ch, int colour, volatile char** video_memory)
-{
-    **video_memory = **ch;
-    *video_memory += 1;
-    **video_memory = colour;
-    *video_memory += 1;
-    return 0;
-}
-
-/*
-* Function that prints character to screen
-*/
-int putchar(char** ch, volatile char** video_memory)
-{
-	start_scrolling(video_memory);
-    **video_memory = **ch;
-    *video_memory += 1;
-    **video_memory = WHITE_TXT;
-    *video_memory += 1;
-    return 0;
-}
-/*
-* Function that prints character to screen
-*/
-int putchar_new(char ch, volatile char** video_memory)
+int putchar(char ch, volatile char** video_memory)
 {
     **video_memory = ch;
     *video_memory += 1;
@@ -386,7 +359,7 @@ int putchar_new(char ch, volatile char** video_memory)
 /*
 * Converts number of any base to string
 */
-char * convert_to_string(unsigned int value, char * str, int base )
+char * convert_to_string(uint64_t value, char * str, int base )
 {
 	//int length=0,start, end;
 	int j, length = 0;
@@ -420,88 +393,7 @@ char * convert_to_string(unsigned int value, char * str, int base )
     	*str++ = temp[j];
     }
     *str = '\0';
-    /*str--;
-    while(*str != '\0')
-    {
-    	str--;
-    	length++;
-    }
-
-    end= length - 1;
-    start = 0;
-
-    while( start < end )
-    {
-		c = str[start];
-		str[start] = str[end];
-		str[end] = c;
-
-		++start;
-		--end;
-    }
-
-    while(*str != '\0')
-    {
-    	str--;
-    }
-*/
-    //return str;
-
-    // Invert the numbers.
-    /*while ( low < ptr )
-    {
-        char tmp = *str;
-        *str++ = *ptr;
-        *ptr-- = tmp;
-    }*/
     return str;
 }
-
-
-/*
-* Converts number of any base to string
-*/
-/*char * convert_to_string(unsigned int value, char * str, int base )
-{
-    //char * rc;
-    //char * ptr;
-    //char * low;
-    // Check for supported base.
-	char ptr[20];
-	//char low[20];
-	int ptr_c = 0, low_c = 0;
-    if ( base < 2 || base > 36 )
-    {
-        *str = '\0';
-        return str;
-    }
-    //rc = ptr = str;
-    // Set '-' for negative decimals.
-
-    if ( value < 0 && base == 10 )
-    {
-        ptr[ptr_c++] = '-';
-    }
-    // The actual conversion.
-    do
-    {
-        // Modulo is negative for negative value. This trick makes abs() unnecessary.
-        ptr[ptr_c++] = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz"[35 + value % base];
-        value /= base;
-    } while ( value );
-    // Terminating the string.
-    ptr[ptr_c] = '\0';
-    // Invert the numbers.
-    ptr_c--;
-	while ( low_c < ptr_c )
-	{
-		char tmp = ptr[low_c];
-		ptr[low_c++] = ptr[ptr_c];
-		ptr[ptr_c--] = tmp;
-	}
-
-    str = ptr;
-    return ptr;
-}*/
 
 

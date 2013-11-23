@@ -108,7 +108,7 @@ static void init_idt()
     idt_set_gate(29,8, 0, 0x0e, 0, ((uint64_t)&isr29));
     idt_set_gate(30,8, 0, 0x0e, 0, ((uint64_t)&isr30));
     idt_set_gate(31,8, 0, 0x0e, 0, ((uint64_t)&isr31));
-    idt_set_gate(128,8, 0, 0x0e, 0, ((uint64_t)&isr128));
+    idt_set_gate(128,8, 0, 0x0e, 3, ((uint64_t)&isr128));
     _x86_64_asm_igdt(&idt_ptr);
 };
 
