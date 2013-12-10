@@ -1,7 +1,8 @@
-#include <stdlib.h>
+
 #include <syscall.h>
+#include <stdio.h>
   
 void exit(int status) {
-           __syscall0(5);  //EXIT CALL NUMBER SHOULD BE 1
+     __syscall1(5, status);   
 }
 

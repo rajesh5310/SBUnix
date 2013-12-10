@@ -1,0 +1,6 @@
+
+#!/bin/sh
+
+qemu-system-x86_64 -m 128 -curses -cdrom $USER.iso -hda $USER.img -gdb tcp::8888 -d cpu_reset -D ./qemu.log $1
+
+

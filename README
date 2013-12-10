@@ -1,20 +1,111 @@
-The provided Makefile:
-  1) builds a kernel
-	2) copies it into rootfs/boot/kernel/kernel
-	3) creates an ISO CD image with the rootfs/ contents
+=================================================================================================================================================
+========================================================= 7 0   P O I N T S   P R O J E C T =====================================================
+=================================================================================================================================================
 
-To boot the system in QEMU, run:
-	qemu-system-x86_64 -curses -cdrom $USER.iso -hda $USER.img -gdb tcp::NNNN
+=================================================================================================================================================
+=============================================================== U S E F U L   T I P S ===========================================================
+=================================================================================================================================================
 
-	Explanation of parameters:
-	-curses         use a text console (omit this to use default SDL/VNC console)
-	-cdrom x.iso    connect a CD-ROM and insert CD with x.iso disk
-	-hda x.img      connect a hard drive with x.img disk
-	-gdb tcp::NNNN  listen for "remote" debugging connections on port NNNN
+For filesystem, use the disk named "hdd.img" in cse506 folder. Disk Image size is 20 MB
 
-When using the -curses mode, switch to the qemu> console with ESC-2.
+If new disk is to created, here are the following steps:
 
-To connect a remote debugger to the running qemu VM:
-	gdb ./kernel
-	target remote localhost:1234
-test
+    1. Run the qemu command to create a 1 MB disk named "hdd.img" : qemu-img create hdd.img 20M 
+
+    2. Insert superblock to that image using command : dd if=superblock of=hdd.img seek=1 conv=notrunc (superblock file is provided in the home directory, which is being generated using initialize_superblock.c)
+
+    3. Now, the hdd.img is ready to be used by our OS. Run Qemu with following command : qemu-system-x86_64 -curses -cdrom $USER.iso -drive id=disk,file=hdd.img,if=none -device ahci,id=ahci -device ide-drive,drive=disk,bus=ahci.0 -gdb tcp::$1
+
+    
+For Shutdown : type shutdown on shell.
+                            
+For any queries, please contact SBUnix developers.
+
+==================================================================================================================================================
+=============================================================== S Y S T E M   C A L L S ==========================================================
+==================================================================================================================================================
+    /* File System Commands  */    
+    READ()
+    Syntax       :  read(file *file, uint64_t addr, char *buf )
+    Description  :  Whenever called  this function reads the file in to the buffer 'buf'.
+    Dependencies :  To open a file always use OPEN system call before reading and after the read is completed, close the file. This call returns -1 for the files whose WRONLY flag is set.
+    return       :  This call returns the length of bytes read into the buffer or -1 if there is an error
+
+
+    WRITE() 
+    Syntax       :  int write(file *fd, char * buf, int size)
+    Description  :  Whenever called it writes up to 'size' number of bytes into the file descriptor 'fd' from the buffer starting at 'addr'.
+    Dependencies :  To open a file always use OPEN system call before reading and after the read is completed, close the file.
+                    This call returns -1 for the files opened with O_RDONLY flag set. It cannot do any write operations on tarfs.
+    return       :  This function retruns length of bytes written into the buffer or -1 on error
+    
+    MALLOC()
+    Syntax       :  void *malloc(uint64_t size)
+    Description  :  Whenever called the size of vma is increased by 'size'.
+    return       :  This call returns the virtual address in heap
+    
+    FORK()
+    Syntax       :  pid_t fork (void); 
+    Description  :  Whenever called a child process is created. It returns pid = 0 for child process and non zero for parent process.
+    return       :  This call returns the pid for parent process or 0 for the child  process.
+    
+    EXECVPE()
+    Syntax       :  execvpe(char *file, char *argv[], char *envp[])
+    Description  :  Whenever called a file along with any necessary arguments argv[] in the environment envp[] is executed.
+    return       :  This call returns -1 on failure, and doesnot return anything on success
+    
+    WAIT()
+    Syntax       :  wait(uint64_t status)
+    Description  :  Whenever called, the parent waits for a child process to exit.
+    return       :  This call returns -1 if the parent has no children.
+    
+    EXIT()
+    Syntax       :  exit(int status)
+    Description  :  Whenever called the calling process is terminated immediately.
+
+    GETPID()
+    Syntax       :  getpid()
+    Description  :  Whenever called the process id of currently running process is returned.
+    
+    GETPPID()
+    Syntax       :  getppid()
+    Description  :  Whenever called the parent's process id of currently running process is returned.
+    
+    PS()
+    Syntax       :  ps()
+    Description  :  Whenever called the list of all currently running processes is returned.
+    
+    OPENDIR()
+    Syntax       :  opendir(uint64_t* entry, uint64_t* directory)
+    Description  :  Whenever called,a directory struct with list of all inode/files in it is returned.
+    return       :  If an error occurs it will return directory struct with the values set to NULL.   
+   
+    READDIR()
+    Syntax       :  readdir(DIR* node)
+    Description  :  Whenver called iteratively, it will list contents in directory. 
+    Dependencies :  Read directory system call is always followed after open directory system call.
+    return       :  It will return the pointer to dirent structure .If end of directory is reached or an error occurs then it returns NULL.
+ 
+    OPEN()
+    Syntax       :  open(char* dir_path, uint64_t flags)
+    Description  :  Whenever called, a file is opened and a file descriptor is returned. It opens files from 'tarfs' and disk depending on 'dir_path'.
+    Dependencies :  The flags can be one of the following: 'O_CREAT', 'O_RDONLY', 'O_WRONLY', 'O_APPEND', 'O_TRUNC', 'O_RDWR'.
+    return       :  This call returns file descriptor number open on a directory returns -1 as file descriptor.
+    
+    SLEEP()
+    Syntax       :  sleep(int msec)
+    Description  :  The state of the current task is changed to 'sleep' for 'msec' milliseconds.
+    
+    CLEAR()
+    Syntax       :  clear()
+    Description  :  Clears the screen.
+    
+    SEEK()
+    Syntax       :  seek(uint64_t fd_type, int offset, int whence) 
+    Description  :  When used it will move the current file pointer by offset number of bytes that is in the file.
+    Dependencies :  whence can be SEEK_SET, SEEK_CUR, SEEK_END. Using this will provide the offset from start , current pointer or end of file.
+
+    SHUTDOWN()
+    Syntax       :  shutdown() 
+    Description  :  This function is used to exit from all the processes. 
+

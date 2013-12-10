@@ -132,7 +132,7 @@ variable logoY
 	then
 
 	2dup s" cse506" compare-insensitive 0= if
-		logoX @ logoY @ cse506-logo
+		logoX @ logoY @ beastie-logo
 		2drop exit
 	then
 	2dup s" beastie" compare-insensitive 0= if

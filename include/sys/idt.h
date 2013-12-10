@@ -1,9 +1,3 @@
-/* @name : idt.h
- * @author : rgolani, abmishra, skandalamsri
- * @last updated date : 25th September, 2013
- */
-
-
 #include <defs.h>
 
 void reload_idt();

@@ -1,22 +1,3 @@
-/*
- * =====================================================================================
- *
- *       Filename:  error.h
- *
- *    Description:  
- *
- *        Version:  1.0
- *        Created:  11/11/2013 02:18:30 AM
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  Er. Udit Gupta (ukg), udit.gupta@stonybrook.edu
- *        Company:  Stony Brook University
- *
- * =====================================================================================
- */
-
-
 #ifndef ERROR_H
 #define ERROR_H
 
@@ -47,4 +28,4 @@ enum {
 };
 
 #endif        // !ERROR_H */
-
+                

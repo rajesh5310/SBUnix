@@ -1,0 +1,26 @@
+#!/bin/sh
+echo All supported commands
+man
+echo
+echo List all directories
+ls
+echo
+echo Working processes
+ps
+echo
+echo Display file contents
+cat tease
+echo Shell sleeping
+sleep 2
+echo
+echo Present Working Directory
+pwd
+echo
+echo cd command
+cd bin
+echo
+echo cd .. Command
+cd ..
+echo
+echo Use vi and cat command to manipulate files in file system hdd/
+cd hdd/

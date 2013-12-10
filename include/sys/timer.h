@@ -1,8 +1,3 @@
-/* @name : timer.h
- * @author : rgolani, abmishra, skandalamsri
- * @last updated date : 25th September, 2013
- */
-
 #ifndef TIMER_H
 #define TIMER_H
 
@@ -10,5 +5,5 @@
 
 void init_timer();
 void timer_callback();
-
+void sleep_shell(int secs);
 #endif

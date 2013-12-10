@@ -1,0 +1,5 @@
+#!/bin/sh
+ls 
+cd etc/
+cat dummy
+echo working

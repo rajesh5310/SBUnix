@@ -1,148 +1,204 @@
 
 #include <syscall.h>
+#include <stdio.h>
 
-int putchar_user(char ch);
 #define va_start(v,l) __builtin_va_start(v,l)
 #define va_arg(v,l)   __builtin_va_arg(v,l)
 #define va_end(v)     __builtin_va_end(v)
 //#define va_copy(d,s)  __builtin_va_copy(d,s)
 typedef __builtin_va_list va_list;
-/*
-* Converts number of any base to string
-*/
-char * convert_to_string_user(uint64_t value, char * str, int base )
-{
-	//int length=0,start, end;
-	int j, length = 0;
-	//char c;
-	char temp[30];
-    // Check for supported base.
-    if ( base < 2 || base > 36 )
-    {
-        *str = '\0';
-        return str;
-    }
 
-    // Set '-' for negative decimals.
-    if ( value < 0 && base == 10 )
-    {
-        *str++ = '-';
-    }
-    // Remember where the numbers start.
-    //low = str;
-    // The actual conversion.
-    do
-    {
-        // Modulo is negative for negative value. This trick makes abs() unnecessary.
-        temp[length++] = "zyxwvutsrqponmlkjihgfedcba9876543210123456789abcdefghijklmnopqrstuvwxyz"[35 + value % base];
-        value /= base;
-    } while ( value );
-    // Terminating the string.
-    temp[length] = '\0';
-    for(j= length-1; j >=0 ; j--)
-    {
-    	*str++ = temp[j];
-    }
-    *str = '\0';
-    return str;
+
+// Will return the length of the string
+unsigned int strlen(const char *str)
+{
+        int i = 0;
+        while(str[i] != '\0')
+                i++;
+        return i;
+}
+
+// Will set the int array to 0's
+unsigned int int_array_reset(int array[], int cnt)
+{
+        int i = 0;
+        for(i = 0; i < cnt; i++) {
+                array[i] = 0;
+        }
+        return (1);
+}
+
+// Will set the char array to '\0'
+unsigned int char_array_reset(char array[], int cnt)
+{
+        int i = 0;
+        for(i = 0; i < cnt; i++) {
+                array[i] = '\0';
+        }
+        return (1);
+}
+
+// will spit out the integer at the given line number
+unsigned int printf_integer(int message, char* str) // the message and the line #
+{
+//        char *vidmem = (char *) VIDMEM;
+        unsigned int i = 0;
+
+        int digits[12];
+//      char char_digits[12];
+        unsigned int remainder = 0;
+        unsigned int quotient = message;
+        int cnt = 0;
+        //int initial_p = 0;
+//      int j = 0;
+
+        int_array_reset(digits, 12);
+
+        while(quotient >= 10) {
+                remainder = (int) (quotient % 10);
+                quotient = (int) (quotient / 10);
+
+                digits[cnt] = remainder;
+                cnt++;
+        }
+        digits[cnt] = quotient;
+        while(cnt >= 0) {
+                *str++ = digits[cnt] + 48;
+//              vidmem[i] = digits[cnt] + 48;   
+//              char_digits[j++] = digits[cnt];
+                cnt--;
+                i++;
+//                vidmem[i] = WHITE_TXT;
+//                i++;  
+        }
+        *str++ = '\0';
+        return i;
+//      return char_digits;
+}
+
+// will spit out the hexadecimal at the given line number
+unsigned int printf_hexadecimal(unsigned long message, char* str) // the message and the line #
+{
+//        char *vidmem = (char *) VIDMEM;
+        unsigned int i = 0;
+
+        int cnt = 0;
+        // int initial_p = 0;
+        char result[8];
+        char hex[] = "0123456789abcdef";
+        unsigned long quotient = message;
+
+        char_array_reset(result, 8);
+
+        while(quotient > 0) {
+                result[cnt++] = hex[(quotient % 16)];
+                quotient = (quotient / 16);
+        }
+//      vidmem[i++] = '0';
+//      vidmem[i++] = WHITE_TXT;
+//      vidmem[i++] = 'x';
+//      vidmem[i++] = WHITE_TXT;        
+
+        *str++ = '0';
+        *str++ = 'x';
+
+        cnt--;
+        while(cnt >= 0)
+        {
+                *str++ = result[cnt];
+//              vidmem[i++] = result[cnt];
+//              vidmem[i++] = WHITE_TXT;
+                cnt--;
+        i++;
+        }
+
+        *str++ = '\0';
+        return i;
 }
 
 /*
 * Handles print function
 */
-int printf(char *message, ...)
+int printf(const char *fmt, ...)
 {
-    char* message_local;
+        va_list args;
 
-    uint64_t temp_int;
-    char temp_char;
-    va_list vl;
-    void *temp_m;
-    uint64_t p_add;
-    uint64_t count;
+        int len = 0;
+        // int str_len = 0;
+        int cnt = 0;
+        char str[1024];
+        char str_temp[1024];
+        int i = 0;
 
-    va_start(vl, message);
-    message_local = message;
-    while( *message_local != 0 )
-    {
+        va_start(args, fmt);
 
-        if(*message_local != 37 && *message_local != '\n')
+        // flush array
+        char_array_reset(str, 1024);
+        char_array_reset(str_temp, 1024);
+
+        // TODO: write the code to print        
+        for(;*fmt;)
         {
-            putchar_user(*message_local);
-            message_local++;
-            continue;
+                if(*fmt != '%') {
+                        str[cnt++] = *fmt++;
+                        continue;
+                }
+
+                fmt++;
+                switch(*fmt) {
+                        case 'c':
+                                str[cnt++] = (unsigned char) va_arg(args, int);
+                                fmt++;
+                                continue;
+                        case 'd':
+                                i = 0;
+                                printf_integer(va_arg(args, int), str_temp);
+                                len = strlen(str_temp);
+                                while(i < len) {
+                                        str[cnt++] = str_temp[i++];
+                                }
+                                fmt++;
+                                continue;
+                        case 's':
+                                i = 0;
+                                char *str_t = (char *)va_arg(args, char *);
+                                len = strlen(str_t);
+                                while(*str_t!='\0')
+                                {
+                                        str[cnt++] = *str_t++;
+                                }
+                                fmt++;
+                                continue;
+                        case 'x':
+                                i = 0;
+                                printf_hexadecimal(va_arg(args, int), str_temp);
+                                len = strlen(str_temp);
+                                while(i < len)
+                                {
+                                        str[cnt++] = str_temp[i++];
+                                }
+                                fmt++;
+                                continue;
+                        case 'p':
+                                i = 0;
+                                printf_hexadecimal(va_arg(args, unsigned long), str_temp);
+                                len = strlen(str_temp);
+                                while(i < len)
+                                {
+                                        str[cnt++] = str_temp[i++];
+                                }
+                                fmt++;
+                                continue;
+                        default:
+                                fmt++;
+                                continue;
+                }
         }
+        str[cnt] = '\0';
 
-        if(*message_local == '\n')
-        {
-        	putchar_user(*message_local);
-            message_local++;
-            continue;
-        }
-
-        switch(*++message_local)
-        {
-        	char temp_str_i[1024], *temp_str;
-            case 's':
-                //temp_str = NULL;
-                temp_str = va_arg(vl, char *);
-                while(*temp_str) {
-                    putchar_user(*temp_str);
-                    temp_str++;
-                }
-                message_local = message_local + 1;
-                break;
-            case 'd':
-                temp_int = va_arg(vl, uint64_t);
-                convert_to_string_user(temp_int, temp_str_i, 10);
-                count = 0;
-                while(temp_str_i[count]!='\0') {
-                    putchar_user(temp_str_i[count]);
-                    count++;
-                }
-                message_local = message_local + 1;
-                break;
-            case 'x':
-                temp_str = NULL;
-            	temp_int = (uint64_t)va_arg(vl, uint64_t);
-				convert_to_string_user(temp_int, temp_str_i, 16);
-				count = 0;
-				while(temp_str_i[count]!='\0') {
-					putchar_user(temp_str_i[count]);
-					count++;
-				}
-				message_local = message_local + 1;
-				break;
-            case 'c':
-                temp_str = NULL;
-                temp_char = va_arg(vl, uint64_t);
-                temp_str = &temp_char;
-                putchar_user(*temp_str);
-                message_local = message_local + 1;
-                break;
-            case 'p':
-                temp_str = NULL;
-                temp_m =  va_arg(vl,  void *);
-                p_add = (uint64_t) temp_m;
-                convert_to_string_user(p_add, temp_str, 16);
-                while(*temp_str) {
-                    putchar_user(*temp_str);
-                    temp_str++;
-                }
-                message_local = message_local + 1;
-                break;
-            }
-    }
-    va_end(vl);
+        va_end(args);
+  int r = 0;
+  while(str[r] != '\0')
+  __syscall1(2, (uint64_t)str[r++]);
     return 0;
 }
-
-/*
-* Function that prints character to screen
-*/
-int putchar_user(char ch)
-{
-	__syscall1(2, (uint64_t)ch);
-	return 0;
-}
-

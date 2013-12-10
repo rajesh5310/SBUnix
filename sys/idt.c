@@ -1,6 +1,6 @@
 #include <sys/idt.h>
-#include <ports.h>
-#include <print.h>
+#include <sys/ports.h>
+#include <sys/print.h>
 #include <sys/isr.h>
 static void init_idt();
 static void idt_set_gate(int,uint16_t, unsigned , unsigned , unsigned , uint64_t);
@@ -51,7 +51,7 @@ extern void isr31();
 extern void isr32();
 extern void isr33();
 extern void isr128();
-
+extern void isr43();
 void load_irq()
 {
       outb(0x20, 0x11);
@@ -67,7 +67,9 @@ void load_irq()
 
       idt_set_gate(32,8, 0, 0x8E, 0, ((uint64_t)isr32));
       idt_set_gate(33,8, 0, 0x8E, 0, ((uint64_t)isr33));
-      __asm__("sti");
+      idt_set_gate(43,8, 0, 0x8E, 0, ((uint64_t)isr43));
+
+//      __asm__("sti");
 }
 
 static void init_idt()

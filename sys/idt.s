@@ -1,6 +1,5 @@
-# @name : idt.s
-# @author : rgolani, abmishra, skandalamsri
-# @last updated date : 25th September, 2013
+# Author: cds
+#
 
 .text
 
